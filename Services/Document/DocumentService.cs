@@ -1,23 +1,23 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
-using UniversityOfNottinghamAPI.Database;
-using UniversityOfNottinghamAPI.Models.InputModels;
+﻿using UniversityOfNottinghamAPI.Models.InputModels;
 using UniversityOfNottinghamAPI.Services.Common;
 
 namespace UniversityOfNottinghamAPI.Services.Document
 {
-    public class DocumentService:IDocumentService
+    public class DocumentService : IDocumentService
     {
         private readonly ICommonService _commonService;
-        private string serviceName = "Document";
+        private string tableName = "Documents";
+
         public DocumentService(ICommonService commonService)
         {
-            _commonService = commonService;            
+            _commonService = commonService;
         }
-        public async Task<IActionResult> CreateDocument(CreateDocumentInput createDocumentInput)
+
+        public async Task<dynamic> CreateDocument(CreateDocumentInput createDocumentInput)
         {
-            string query = _commonService.QueryBuilder(serviceName,createDocumentInput).ToString();
-            return null;
+            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Create, createDocumentInput);
+            var result = await _commonService.ExecuteRequest(tableName, query);
+            return query;
         }
     }
 }

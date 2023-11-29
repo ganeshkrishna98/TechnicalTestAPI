@@ -6,8 +6,7 @@ using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
 namespace UniversityOfNottinghamAPI.Services.Common
 {
     public class CommonService : ICommonService
-    {        
-        private readonly TableColumns _tableColumns;
+    {
         private readonly IConfiguration _configuration;
 
         public CommonService(IConfiguration configuration)
@@ -15,48 +14,76 @@ namespace UniversityOfNottinghamAPI.Services.Common
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> ExecuteRequest(string serviceName, dynamic inputParameters)
+        public async Task<IActionResult> ExecuteRequest(string serviceName, string queryString)
         {
-            SqlConnection _sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
-
+            SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
+            await sqlConnection.OpenAsync();
+            SqlCommand sqlCommand = new SqlCommand(queryString,sqlConnection);
+            var result = await sqlCommand.ExecuteNonQueryAsync();
+            sqlConnection.Close();
             return null;
         }
-        public async Task<string> QueryBuilder(string tableName, dynamic inputParameters)
+
+        public async Task<string> QueryBuilder(string tableName, string queryType, dynamic inputParameters)
         {
             string columnNames = await GetSQLColumns(tableName);
-            if (columnNames.Length != inputParameters.Length)
-            {
-                throw new ArgumentException("Column names count must match values count");
-            }
 
             StringBuilder queryBuilder = new StringBuilder();
-            queryBuilder.Append($"INSERT INTO {tableName} (");
 
-            queryBuilder.Append(columnNames);
+            switch (queryType)
+            {
+                case "Read":
+                    break;
 
-            queryBuilder.Append(") VALUES (");
-            queryBuilder.Append(inputParameters);
-
-            queryBuilder.Append(");");
-
-            return queryBuilder.ToString();
+                case "Create":
+                    queryBuilder.Append($"INSERT INTO {tableName} (");
+                    queryBuilder.Append(columnNames);
+                    queryBuilder.Append(") VALUES ( '");
+                    queryBuilder.Append(inputParameters.Document_ID);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Document_Name);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.File_Name);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Approval_Status);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Author_User_ID);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Author_Name);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Last_Modified_User_ID);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Last_Modified_User_Name);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Last_Accessed_User_Name);
+                    queryBuilder.Append("', '");
+                    queryBuilder.Append(inputParameters.Last_Accessed_User_ID);
+                    queryBuilder.Append("');");
+                    break;
+            }
+            string result = queryBuilder.ToString();
+            return result;
         }
+
+        internal string GetTableName (string serviceName)
+        {
+            return null;
+        }
+
         internal async Task<string> GetSQLColumns(string serviceName)
         {
             string columns = string.Empty;
             switch (serviceName)
             {
-                case "Document":
-                    columns = _tableColumns.DocumentColumns;
+                case "Documents":
+                    columns = TableColumns.DocumentColumns;
                     break;
 
-                case "User":
-                    columns = _tableColumns.UserAccountColumns;
+                case "UserAccounts":
+                    columns = TableColumns.UserAccountColumns;
                     break;
             }
             return columns;
         }
-
-        
     }
 }

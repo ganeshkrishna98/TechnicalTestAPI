@@ -5,6 +5,6 @@ namespace UniversityOfNottinghamAPI.Services.Document
 {
     public interface IDocumentService
     {
-        public Task<IActionResult> CreateDocument(CreateDocumentInput createDocumentInput);
+        public Task<dynamic> CreateDocument(CreateDocumentInput createDocumentInput);
     }
 }
