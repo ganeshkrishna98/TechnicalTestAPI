@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.Services.UserManagement;
 
 namespace UniversityOfNottinghamAPI
 {
@@ -20,7 +23,7 @@ namespace UniversityOfNottinghamAPI
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins(_configuration["ConnectionStrings:Angular"]) // Replace with your Angular app's URL
+                    builder => builder.WithOrigins(_configuration.GetConnectionString("Angular")) 
                                       .AllowAnyMethod()
                                       .AllowAnyHeader()
                                       .AllowCredentials());
@@ -32,7 +35,15 @@ namespace UniversityOfNottinghamAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
             });
-            // Additional services can be added here...
+
+            services.AddDbContext<DatabaseContext>(options =>
+            options.UseSqlServer(_configuration.GetConnectionString("SQL")));
+            services.AddHttpClient();
+
+
+            services.AddScoped<IUserManagementService, UserManagementService>();
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
