@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Services.DatabaseManagement
 {
-    public class DatabaseManagementService
+    public class DatabaseManagementService:IDatabaseManagementService
     {
     }
 }

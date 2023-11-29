@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Services.DeviceManagement
 {
-    public class DeviceManagementService
+    public class DeviceManagementService:IDeviceManagementService
     {
     }
 }

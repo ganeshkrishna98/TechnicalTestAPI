@@ -6,6 +6,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.Services.AccessLogs;
+using UniversityOfNottinghamAPI.Services.DatabaseManagement;
+using UniversityOfNottinghamAPI.Services.DeviceManagement;
+using UniversityOfNottinghamAPI.Services.Document;
+using UniversityOfNottinghamAPI.Services.NotificationManagement;
+using UniversityOfNottinghamAPI.Services.StorageManagement;
 using UniversityOfNottinghamAPI.Services.UserManagement;
 
 namespace UniversityOfNottinghamAPI
@@ -41,8 +47,13 @@ namespace UniversityOfNottinghamAPI
             services.AddHttpClient();
 
 
+            services.AddScoped<IAccessLogsService, AccessLogsService>();
+            services.AddScoped<IDatabaseManagementService,DatabaseManagementService>();
+            services.AddScoped<IDeviceManagementService, DeviceManagementService>();
+            services.AddScoped<IDocumentService, DocumentService>();
+            services.AddScoped<INotificationManagementService, NotificationManagementService>();
+            services.AddScoped<IStorageManagementService, StorageManagementService>();
             services.AddScoped<IUserManagementService, UserManagementService>();
-
 
         }
 

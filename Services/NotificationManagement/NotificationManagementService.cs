@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Services.NotificationManagement
 {
-    public class NotificationManagementService
+    public class NotificationManagementService:INotificationManagementService
     {
     }
 }

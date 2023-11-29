@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Services.AccessLogs
 {
-    public class AccessLogsService
+    public class AccessLogsService:IAccessLogsService
     {
     }
 }

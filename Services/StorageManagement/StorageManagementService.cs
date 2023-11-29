@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Services.StorageManagement
 {
-    public class StorageManagementService
+    public class StorageManagementService: IStorageManagementService
     {
     }
 }
