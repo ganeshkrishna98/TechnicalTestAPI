@@ -1,8 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Primitives;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
+using Constant = UniversityOfNottinghamAPI.Constants.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Common
 {
@@ -15,13 +16,20 @@ namespace UniversityOfNottinghamAPI.Services.Common
             _configuration = configuration;
         }
 
-        public async Task<dynamic> ExecuteRequest(string serviceName, string queryType, string queryString)
+        public async Task<dynamic> ExecuteRequest(string serviceName, string queryType, dynamic inputParameters)
         {
+            #region Get Table Name
+            var tableName=GetTableName(serviceName);
+            #endregion
+            #region Generate Query
+            var queryString =await QueryBuilder(tableName, queryType, inputParameters);
+            #endregion
+            #region SQL Execution Part
             SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(queryString, sqlConnection);
-            if (queryType == "Read")
+            if (queryType == Constant.Read)
             {
                 DataTable dataTable = new DataTable();
                 await Task.Run(() => sqlDataAdapter.Fill(dataTable));
@@ -36,80 +44,106 @@ namespace UniversityOfNottinghamAPI.Services.Common
             {
                 var response = await sqlCommand.ExecuteNonQueryAsync();
                 if (response == 1)
-                    return "Success";
+                    return Constant.Success;
                 else
-                    return "Failed";
+                    return Constant.Failed;
             }
+            #endregion
         }
 
-        public async Task<string> QueryBuilder(string tableName, string queryType, dynamic inputParameters)
+        #region Internal Functions To Fetch Data and Generate Query
+        internal async Task<string> QueryBuilder(string tableName, string queryType, dynamic inputParameters)
         {
-            string columnNames = await GetSQLColumns(tableName);
-
+            List<string> columnNames = await GetSQLColumns(tableName);
             StringBuilder queryBuilder = new StringBuilder();
 
             switch (queryType)
             {
-                case "Read":
+                case Constant.Read:
                     queryBuilder.Append($"SELECT * FROM {tableName} ;");
                     break;
 
-                case "Create":
+                case Constant.Create:
                     queryBuilder.Append($"INSERT INTO {tableName} (");
-                    queryBuilder.Append(columnNames);
-                    queryBuilder.Append(") VALUES ( '");
-                    queryBuilder.Append(inputParameters.Document_ID);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Document_Name);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.File_Name);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Approval_Status);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Author_User_ID);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Author_Name);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Last_Modified_User_ID);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Last_Modified_User_Name);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Last_Accessed_User_Name);
-                    queryBuilder.Append("', '");
-                    queryBuilder.Append(inputParameters.Last_Accessed_User_ID);
-                    queryBuilder.Append("');");
+                    foreach (string item in columnNames)
+                    {
+                        queryBuilder.Append($" {item}");
+                        if(item != columnNames.LastOrDefault())
+                            queryBuilder.Append(",");
+                    }
+                    queryBuilder.Append(") VALUES ( ");
+                    foreach (string item in columnNames)
+                    {
+                        var property = inputParameters.GetType().GetProperty(item);
+                        var value = property.GetValue(inputParameters, null);
+                        queryBuilder.Append($" '{value}'");
+                        if (item != columnNames.LastOrDefault())
+                            queryBuilder.Append(',');
+                        else
+                            queryBuilder.Append(");");
+                    }
                     break;
-                case "Delete":
+
+                case Constant.Delete:
                     queryBuilder.Append($"DELETE FROM {tableName} WHERE ");
-                    string[] check = columnNames.Split(',');
-                    queryBuilder.Append($"{check[0]} = {inputParameters};");                    
+                    var inputProp = inputParameters.GetType().GetProperty(columnNames.FirstOrDefault());
+                    var inputPropVal = inputProp.GetValue(inputParameters, null);
+                    if (inputPropVal != null)
+                        queryBuilder.Append($"{columnNames.FirstOrDefault()} = '{inputPropVal}';");
                     break;
-                case "Update":
+
+                case Constant.Update:
+                    queryBuilder.Append($"UPDATE {tableName} SET ");
+                    foreach (string item in columnNames)
+                    {
+                        if (item != columnNames.FirstOrDefault())
+                        {
+                            var property = inputParameters.GetType().GetProperty(item);
+                            var value = property.GetValue(inputParameters, null);
+                            queryBuilder.Append($" {item} = '{value}'");
+                            if (item != columnNames.LastOrDefault())
+                                queryBuilder.Append(',');
+                            else
+                            {
+                                property = inputParameters.GetType().GetProperty(columnNames.FirstOrDefault());
+                                value = property.GetValue(inputParameters, null);
+                                queryBuilder.Append($"WHERE {columnNames.FirstOrDefault()} = '{value}';");
+                            }
+                        }
+                    }
                     break;
             }
             string result = queryBuilder.ToString();
             return result;
         }
 
-        internal string GetTableName(string serviceName)
+        public string GetTableName(string serviceName)
         {
-            return null;
+            string table = string.Empty;
+            switch(serviceName)
+            {
+                case Constant.DocumentService:
+                    table= Constant.Documents;
+                    break;
+            }
+            return table;
         }
 
-        internal async Task<string> GetSQLColumns(string serviceName)
+        internal static async Task<List<string>> GetSQLColumns(string serviceName)
         {
-            string columns = string.Empty;
+            List<string> columns = new List<string>();
             switch (serviceName)
             {
-                case "Documents":
-                    columns = TableColumns.DocumentColumns;
+                case Constant.Documents:
+                    columns.AddRange(TableColumns.DocumentColumns.Split(','));
                     break;
 
-                case "UserAccounts":
-                    columns = TableColumns.UserAccountColumns;
+                case Constant.UserAccounts:
+                    columns.AddRange(TableColumns.UserAccountColumns.Split(','));
                     break;
             }
             return columns;
         }
+        #endregion
     }
 }

@@ -18,10 +18,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         }
 
         [HttpGet]
-        [Route("get-documents")]
-        public async Task<IActionResult> GetDocuments([FromQuery] string uid)
+        [Route("read-documents")]
+        public async Task<IActionResult> ReadDocuments([FromQuery] string uid)
         {
-            var result = await _documentService.GetDocuments();
+            var result = await _documentService.ReadDocuments();
             return Ok(result);
         }
 
@@ -43,9 +43,9 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpDelete]
         [Route("delete-documents")]
-        public async Task<IActionResult> DeleteDocument([FromBody] string docID)
+        public async Task<IActionResult> DeleteDocument([FromBody] DocumentInput documentInput)
         {
-            var result = await _documentService.DeleteDocument(docID);
+            var result = await _documentService.DeleteDocument(documentInput);
             return Ok(result);
         }
     }

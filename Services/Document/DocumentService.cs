@@ -2,6 +2,7 @@
 using UniversityOfNottinghamAPI.Models.InputModels;
 using UniversityOfNottinghamAPI.Models.OutputModels;
 using UniversityOfNottinghamAPI.Services.Common;
+using Constant = UniversityOfNottinghamAPI.Constants.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Document
 {
@@ -9,7 +10,6 @@ namespace UniversityOfNottinghamAPI.Services.Document
     {
         private readonly ICommonService _commonService;
         private readonly IDocumentModelMapping _documentModelMapping;
-        private string tableName = "Documents";
 
         public DocumentService(ICommonService commonService, IDocumentModelMapping documentModelMapping)
         {
@@ -17,33 +17,25 @@ namespace UniversityOfNottinghamAPI.Services.Document
             _documentModelMapping = documentModelMapping;
         }
 
-        public async Task<List<DocumentOutput>> GetDocuments()
+        public async Task<List<DocumentOutput>> ReadDocuments()
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Read, string.Empty);
-            var result = await _commonService.ExecuteRequest(tableName, Constants.Constants.Read, query);
-            var output = _documentModelMapping.DocumentMapping(result);
-            return output;
+            var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Read, string.Empty);
+            return _documentModelMapping.DocumentMapping(result);
         }
 
         public async Task<dynamic> CreateDocument(DocumentInput documentInput)
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Create, documentInput);
-            var result = await _commonService.ExecuteRequest(tableName, null, query);
-            return result;
+            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, documentInput);
         }
 
         public async Task<dynamic> UpdateDocument(DocumentInput documentInput)
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Update, documentInput);
-            var result = await _commonService.ExecuteRequest(tableName, null, query);
-            return result;
+            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Update, documentInput);
         }
 
-        public async Task<dynamic> DeleteDocument(string docID)
+        public async Task<dynamic> DeleteDocument(DocumentInput documentInput)
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Delete, docID);
-            var result = await _commonService.ExecuteRequest(tableName, null, query);
-            return result;
+            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
         }
     }
 }
