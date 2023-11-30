@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.ModelMapping;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Common;
 using UniversityOfNottinghamAPI.Services.DatabaseManagement;
@@ -42,6 +43,7 @@ builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<INotificationManagementService, NotificationManagementService>();
 builder.Services.AddScoped<IStorageManagementService, StorageManagementService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
+builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
 
 #endregion ConfigureServices
 
@@ -51,6 +53,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    app.Urls.Add("https://localhost:7028");
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {

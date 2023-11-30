@@ -17,8 +17,16 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
             _documentService = documentService;
         }
 
+        [HttpGet]
+        [Route("get-documents")]
+        public async Task<IActionResult> GetDocuments([FromQuery] string uid)
+        {
+            var result = await _documentService.GetDocuments();
+            return Ok(result);
+        }
+
         [HttpPost]
-        [Route("create-document")]
+        [Route("create-documents")]
         public async Task<IActionResult> CreateDocument([FromBody] CreateDocumentInput createDocumentInput)
         {
             var result = await _documentService.CreateDocument(createDocumentInput);

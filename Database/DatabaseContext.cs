@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UniversityOfNottinghamAPI.Models.ServerModels;
+using UniversityOfNottinghamAPI.Models.OutputModels;
 
 namespace UniversityOfNottinghamAPI.Database
 {
@@ -7,10 +7,18 @@ namespace UniversityOfNottinghamAPI.Database
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
-
         }
 
-        public DbSet<Users> Users { get; set; }
-        public DbSet<Documents> Documents { get; set; }
+        public DbSet<UsersOutput> Users { get; set; }
+        public DbSet<DocumentOutput> DocumentOutputs { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UsersOutput>().HasNoKey();
+            modelBuilder.Entity<DocumentOutput>()
+                .HasKey(d => d.Document_ID);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

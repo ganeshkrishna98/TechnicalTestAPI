@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
+using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
 
@@ -14,14 +14,31 @@ namespace UniversityOfNottinghamAPI.Services.Common
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> ExecuteRequest(string serviceName, string queryString)
+        public async Task<dynamic> ExecuteRequest(string serviceName, string queryType, string queryString)
         {
             SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
             await sqlConnection.OpenAsync();
-            SqlCommand sqlCommand = new SqlCommand(queryString,sqlConnection);
-            var result = await sqlCommand.ExecuteNonQueryAsync();
-            sqlConnection.Close();
-            return null;
+            SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(queryString, sqlConnection);
+            if (queryType == "Read")
+            {
+                DataTable dataTable = new DataTable();
+                await Task.Run(() => sqlDataAdapter.Fill(dataTable));
+                List<object[]> array = new();
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    array.Add(row.ItemArray);
+                }
+                return array;
+            }
+            else
+            {
+                var response = await sqlCommand.ExecuteNonQueryAsync();
+                if (response == 1)
+                    return "Success";
+                else
+                    return "Failed";
+            }
         }
 
         public async Task<string> QueryBuilder(string tableName, string queryType, dynamic inputParameters)
@@ -33,6 +50,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
             switch (queryType)
             {
                 case "Read":
+                    queryBuilder.Append($"SELECT * FROM {tableName} ;");
                     break;
 
                 case "Create":
@@ -65,7 +83,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
             return result;
         }
 
-        internal string GetTableName (string serviceName)
+        internal string GetTableName(string serviceName)
         {
             return null;
         }
