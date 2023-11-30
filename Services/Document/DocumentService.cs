@@ -19,17 +19,31 @@ namespace UniversityOfNottinghamAPI.Services.Document
 
         public async Task<List<DocumentOutput>> GetDocuments()
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Read, null);
+            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Read, string.Empty);
             var result = await _commonService.ExecuteRequest(tableName, Constants.Constants.Read, query);
-            var output = _documentModelMapping.GetAllRecordsModelMapping(result);
+            var output = _documentModelMapping.DocumentMapping(result);
             return output;
         }
 
-        public async Task<dynamic> CreateDocument(CreateDocumentInput createDocumentInput)
+        public async Task<dynamic> CreateDocument(DocumentInput documentInput)
         {
-            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Create, createDocumentInput);
+            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Create, documentInput);
             var result = await _commonService.ExecuteRequest(tableName, null, query);
-            return query;
+            return result;
+        }
+
+        public async Task<dynamic> UpdateDocument(DocumentInput documentInput)
+        {
+            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Update, documentInput);
+            var result = await _commonService.ExecuteRequest(tableName, null, query);
+            return result;
+        }
+
+        public async Task<dynamic> DeleteDocument(string docID)
+        {
+            string query = await _commonService.QueryBuilder(tableName, Constants.Constants.Delete, docID);
+            var result = await _commonService.ExecuteRequest(tableName, null, query);
+            return result;
         }
     }
 }

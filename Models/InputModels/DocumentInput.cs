@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Models.InputModels
 {
-    public class CreateDocumentInput
+    public class DocumentInput
     {
         public string Document_ID { get; set; }
         public string Document_Name { get; set; }

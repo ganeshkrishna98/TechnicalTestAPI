@@ -4,6 +4,6 @@ namespace UniversityOfNottinghamAPI.ModelMapping
 {
     public interface IDocumentModelMapping
     {
-        public List<DocumentOutput> GetAllRecordsModelMapping(List<object[]> array);
+        public List<DocumentOutput> DocumentMapping(List<object[]> array);
     }
 }

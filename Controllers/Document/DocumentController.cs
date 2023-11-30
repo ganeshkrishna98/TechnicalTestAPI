@@ -27,9 +27,25 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpPost]
         [Route("create-documents")]
-        public async Task<IActionResult> CreateDocument([FromBody] CreateDocumentInput createDocumentInput)
+        public async Task<IActionResult> CreateDocument([FromBody] DocumentInput documentInput)
         {
-            var result = await _documentService.CreateDocument(createDocumentInput);
+            var result = await _documentService.CreateDocument(documentInput);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("update-documents")]
+        public async Task<IActionResult> UpdateDocument([FromBody] DocumentInput documentInput)
+        {
+            var result = await _documentService.UpdateDocument(documentInput);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        [Route("delete-documents")]
+        public async Task<IActionResult> DeleteDocument([FromBody] string docID)
+        {
+            var result = await _documentService.DeleteDocument(docID);
             return Ok(result);
         }
     }

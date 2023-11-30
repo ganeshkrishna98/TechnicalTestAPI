@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Primitives;
 using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
@@ -77,6 +78,13 @@ namespace UniversityOfNottinghamAPI.Services.Common
                     queryBuilder.Append("', '");
                     queryBuilder.Append(inputParameters.Last_Accessed_User_ID);
                     queryBuilder.Append("');");
+                    break;
+                case "Delete":
+                    queryBuilder.Append($"DELETE FROM {tableName} WHERE ");
+                    string[] check = columnNames.Split(',');
+                    queryBuilder.Append($"{check[0]} = {inputParameters};");                    
+                    break;
+                case "Update":
                     break;
             }
             string result = queryBuilder.ToString();
