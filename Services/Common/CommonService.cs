@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
@@ -19,12 +18,19 @@ namespace UniversityOfNottinghamAPI.Services.Common
         public async Task<dynamic> ExecuteRequest(string serviceName, string queryType, dynamic inputParameters)
         {
             #region Get Table Name
-            var tableName=GetTableName(serviceName);
-            #endregion
+
+            var tableName = GetTableName(serviceName);
+
+            #endregion Get Table Name
+
             #region Generate Query
-            var queryString =await QueryBuilder(tableName, queryType, inputParameters);
-            #endregion
+
+            var queryString = await QueryBuilder(tableName, queryType, inputParameters);
+
+            #endregion Generate Query
+
             #region SQL Execution Part
+
             SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
             await sqlConnection.OpenAsync();
             SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
@@ -48,10 +54,12 @@ namespace UniversityOfNottinghamAPI.Services.Common
                 else
                     return Constant.Failed;
             }
-            #endregion
+
+            #endregion SQL Execution Part
         }
 
         #region Internal Functions To Fetch Data and Generate Query
+
         internal async Task<string> QueryBuilder(string tableName, string queryType, dynamic inputParameters)
         {
             List<string> columnNames = await GetSQLColumns(tableName);
@@ -68,7 +76,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
                     foreach (string item in columnNames)
                     {
                         queryBuilder.Append($" {item}");
-                        if(item != columnNames.LastOrDefault())
+                        if (item != columnNames.LastOrDefault())
                             queryBuilder.Append(",");
                     }
                     queryBuilder.Append(") VALUES ( ");
@@ -120,10 +128,10 @@ namespace UniversityOfNottinghamAPI.Services.Common
         public string GetTableName(string serviceName)
         {
             string table = string.Empty;
-            switch(serviceName)
+            switch (serviceName)
             {
                 case Constant.DocumentService:
-                    table= Constant.Documents;
+                    table = Constant.Documents;
                     break;
             }
             return table;
@@ -144,6 +152,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
             }
             return columns;
         }
-        #endregion
+
+        #endregion Internal Functions To Fetch Data and Generate Query
     }
 }
