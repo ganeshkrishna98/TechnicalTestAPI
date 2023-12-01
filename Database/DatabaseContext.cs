@@ -11,11 +11,11 @@ namespace UniversityOfNottinghamAPI.Database
 
         public DbSet<DocumentsModel> Documents { get; set; }
         public DbSet<UserAccountsModel> UserAccounts { get; set; }
-        public DbSet<AuthenticationModel> Authentication { get; set; }
+        public DbSet<UserAuthenticationModel> UserAuthentication { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<AuthenticationModel>().HasKey(x => x.userId);
+            modelBuilder.Entity<UserAuthenticationModel>().HasKey(x => x.userId);
             modelBuilder.Entity<DocumentsModel>().HasKey(x => x.documentId);
             modelBuilder.Entity<UserAccountsModel>().HasKey(x => x.userId);
             base.OnModelCreating(modelBuilder);

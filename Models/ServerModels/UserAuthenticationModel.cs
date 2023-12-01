@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UniversityOfNottinghamAPI.Models.ServerModels
 {
-    public class AuthenticationModel
+    public class UserAuthenticationModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string userId { get; set; }
         public string userEmail { get; set; }
-        public byte[] passwordHash { get; set; }
-        public byte[] passwordSalt { get; set; }
+        public string passwordHash { get; set; }
+        public string passwordSalt { get; set; }
     }
 }
