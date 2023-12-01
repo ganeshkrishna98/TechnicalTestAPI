@@ -3,6 +3,7 @@ using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
 using UniversityOfNottinghamAPI.ModelMapping;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
+using UniversityOfNottinghamAPI.Services.Authentication;
 using UniversityOfNottinghamAPI.Services.Common;
 using UniversityOfNottinghamAPI.Services.DatabaseManagement;
 using UniversityOfNottinghamAPI.Services.DeviceManagement;
@@ -44,6 +45,7 @@ builder.Services.AddScoped<INotificationManagementService, NotificationManagemen
 builder.Services.AddScoped<IStorageManagementService, StorageManagementService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 
 #endregion ConfigureServices
 
