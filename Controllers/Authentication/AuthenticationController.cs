@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Authentication;
 
 namespace UniversityOfNottinghamAPI.Controllers.Authentication
 {
+    [Route("api/authentication")]
+    [EnableCors]
     public class AuthenticationController : Controller
     {
         private readonly IAuthenticationService _authService;
