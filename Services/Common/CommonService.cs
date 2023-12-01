@@ -135,7 +135,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
             switch (serviceName)
             {
                 case Constant.Documents:
-                    columns.AddRange(TableColumns.DocumentColumns.Split(','));
+                    columns.AddRange(TableColumns.DocumentsColumns.Split(','));
                     break;
 
                 case Constant.UserAccounts:
