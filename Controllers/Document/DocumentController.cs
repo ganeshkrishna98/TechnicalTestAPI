@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using UniversityOfNottinghamAPI.Database;
-using UniversityOfNottinghamAPI.Models.InputModels;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Document;
 
 namespace UniversityOfNottinghamAPI.Controllers.Document
@@ -27,7 +27,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpPost]
         [Route("create-documents")]
-        public async Task<IActionResult> CreateDocument([FromBody] DocumentInput documentInput)
+        public async Task<IActionResult> CreateDocument([FromBody] Documents documentInput)
         {
             var result = await _documentService.CreateDocument(documentInput);
             return Ok(result);
@@ -35,7 +35,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpPost]
         [Route("update-documents")]
-        public async Task<IActionResult> UpdateDocument([FromBody] DocumentInput documentInput)
+        public async Task<IActionResult> UpdateDocument([FromBody] Documents documentInput)
         {
             var result = await _documentService.UpdateDocument(documentInput);
             return Ok(result);
@@ -43,7 +43,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpDelete]
         [Route("delete-documents")]
-        public async Task<IActionResult> DeleteDocument([FromBody] DocumentInput documentInput)
+        public async Task<IActionResult> DeleteDocument([FromBody] Documents documentInput)
         {
             var result = await _documentService.DeleteDocument(documentInput);
             return Ok(result);

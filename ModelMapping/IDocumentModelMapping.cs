@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Models.OutputModels;
+﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
 
 namespace UniversityOfNottinghamAPI.ModelMapping
 {
     public interface IDocumentModelMapping
     {
-        public List<DocumentOutput> DocumentMapping(List<object[]> array);
+        public List<Documents> DocumentMapping(List<object[]> array);
     }
 }

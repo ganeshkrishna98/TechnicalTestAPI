@@ -18,6 +18,7 @@
         #region Database Table Names
         public const string Documents = "Documents";
         public const string UserAccounts = "UserAccounts";
+        public const string Authentication = "Authentication";
         #endregion
     }
 }

@@ -1,6 +1,5 @@
 ﻿using UniversityOfNottinghamAPI.ModelMapping;
-using UniversityOfNottinghamAPI.Models.InputModels;
-using UniversityOfNottinghamAPI.Models.OutputModels;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
 using Constant = UniversityOfNottinghamAPI.Constants.Constants;
 
@@ -17,23 +16,23 @@ namespace UniversityOfNottinghamAPI.Services.Document
             _documentModelMapping = documentModelMapping;
         }
 
-        public async Task<List<DocumentOutput>> ReadDocuments()
+        public async Task<List<Documents>> ReadDocuments()
         {
             var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Read, string.Empty);
             return _documentModelMapping.DocumentMapping(result);
         }
 
-        public async Task<dynamic> CreateDocument(DocumentInput documentInput)
+        public async Task<dynamic> CreateDocument(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, documentInput);
         }
 
-        public async Task<dynamic> UpdateDocument(DocumentInput documentInput)
+        public async Task<dynamic> UpdateDocument(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Update, documentInput);
         }
 
-        public async Task<dynamic> DeleteDocument(DocumentInput documentInput)
+        public async Task<dynamic> DeleteDocument(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
         }
