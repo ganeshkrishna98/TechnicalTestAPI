@@ -22,19 +22,19 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
             return await _userManagementModelMapping.UserManagementMapping(result);
         }
 
-        public async Task<dynamic> CreateUsers(Models.ServiceModels.UserAccounts userManagementInput)
+        public async Task<dynamic> CreateUsers(UserAccounts userManagementInput)
         {
             userManagementInput.userId = Guid.NewGuid().ToString();
             return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Create, userManagementInput);
         }
 
-        public async Task<dynamic> UpdateUsers(Models.ServiceModels.UserAccounts userManagementInput)
+        public async Task<dynamic> UpdateUsers(UserAccounts userManagementInput)
         {
             userManagementInput.userId = Guid.NewGuid().ToString();
             return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Update, userManagementInput);
         }
 
-        public async Task<dynamic> DeleteUsers(Models.ServiceModels.UserAccounts userManagementInput)
+        public async Task<dynamic> DeleteUsers(UserAccounts userManagementInput)
         {
             userManagementInput.userId = Guid.NewGuid().ToString();
             return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Delete, userManagementInput);
