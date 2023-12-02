@@ -27,9 +27,9 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpPost]
         [Route("create-documents")]
-        public async Task<IActionResult> CreateDocument([FromBody] Documents documentInput)
+        public async Task<IActionResult> CreateDocuments([FromBody] Documents documentInput)
         {
-            var result = await _documentService.CreateDocument(documentInput);
+            var result = await _documentService.CreateDocuments(documentInput);
             return Ok(result);
         }
 
@@ -37,7 +37,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         [Route("update-documents")]
         public async Task<IActionResult> UpdateDocument([FromBody] Documents documentInput)
         {
-            var result = await _documentService.UpdateDocument(documentInput);
+            var result = await _documentService.UpdateDocuments(documentInput);
             return Ok(result);
         }
 
@@ -45,7 +45,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         [Route("delete-documents")]
         public async Task<IActionResult> DeleteDocument([FromBody] Documents documentInput)
         {
-            var result = await _documentService.DeleteDocument(documentInput);
+            var result = await _documentService.DeleteDocuments(documentInput);
             return Ok(result);
         }
     }

@@ -22,17 +22,17 @@ namespace UniversityOfNottinghamAPI.Services.Document
             return await _documentModelMapping.DocumentMapping(result);
         }
 
-        public async Task<dynamic> CreateDocument(Documents documentInput)
+        public async Task<dynamic> CreateDocuments(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, documentInput);
         }
 
-        public async Task<dynamic> UpdateDocument(Documents documentInput)
+        public async Task<dynamic> UpdateDocuments(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Update, documentInput);
         }
 
-        public async Task<dynamic> DeleteDocument(Documents documentInput)
+        public async Task<dynamic> DeleteDocuments(Documents documentInput)
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
         }

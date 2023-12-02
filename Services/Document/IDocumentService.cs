@@ -6,10 +6,10 @@ namespace UniversityOfNottinghamAPI.Services.Document
     {
         public Task<List<Documents>> ReadDocuments();
 
-        public Task<dynamic> CreateDocument(Documents documentInput);
+        public Task<dynamic> CreateDocuments(Documents documentInput);
 
-        public Task<dynamic> UpdateDocument(Documents documentInput);
+        public Task<dynamic> UpdateDocuments(Documents documentInput);
 
-        public Task<dynamic> DeleteDocument(Documents documentInput);
+        public Task<dynamic> DeleteDocuments(Documents documentInput);
     }
 }
