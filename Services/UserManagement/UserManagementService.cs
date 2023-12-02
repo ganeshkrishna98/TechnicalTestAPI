@@ -14,11 +14,25 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
         public UserManagementService(ICommonService commonService)
         {
             _commonService = commonService;
+        }        
+        public async Task<dynamic> ReadUser()
+        {
+            return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Read, string.Empty);
         }
         public async Task<dynamic> CreateUser(UserManagementInput userManagementInput)
         {
             userManagementInput.userId = Guid.NewGuid().ToString();
             return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Create, userManagementInput);
+        }
+        public async Task<dynamic> UpdateUser(UserManagementInput userManagementInput)
+        {
+            userManagementInput.userId = Guid.NewGuid().ToString();
+            return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Update, userManagementInput);
+        }
+        public async Task<dynamic> DeleteUser(UserManagementInput userManagementInput)
+        {
+            userManagementInput.userId = Guid.NewGuid().ToString();
+            return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Delete, userManagementInput);
         }
     }
 }

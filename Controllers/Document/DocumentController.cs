@@ -19,7 +19,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpGet]
         [Route("read-documents")]
-        public async Task<IActionResult> ReadDocuments([FromQuery] string uid)
+        public async Task<IActionResult> ReadDocuments()
         {
             var result = await _documentService.ReadDocuments();
             return Ok(result);
