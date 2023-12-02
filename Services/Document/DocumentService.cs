@@ -19,7 +19,7 @@ namespace UniversityOfNottinghamAPI.Services.Document
         public async Task<List<Documents>> ReadDocuments()
         {
             var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Read, string.Empty);
-            return _documentModelMapping.DocumentMapping(result);
+            return await _documentModelMapping.DocumentMapping(result);
         }
 
         public async Task<dynamic> CreateDocument(Documents documentInput)

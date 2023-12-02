@@ -4,7 +4,7 @@ namespace UniversityOfNottinghamAPI.ModelMapping
 {
     public class DocumentModelMapping:IDocumentModelMapping
     {
-        public List<Documents> DocumentMapping(List<object[]> array)
+        public async Task<List<Documents>> DocumentMapping(List<object[]> array)
         {
             var outputList = new List<Documents>();
             foreach (var item in array)
