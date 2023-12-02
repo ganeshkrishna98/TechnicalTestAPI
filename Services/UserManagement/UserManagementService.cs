@@ -18,9 +18,9 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
         public async Task<dynamic> CreateUser(UserManagementInput userManagementInput)
         {
             userManagementInput.userId = Guid.NewGuid().ToString();
-            var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, userManagementInput);
+            var result = await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Create, userManagementInput);
 
-            return null;
+            return result;
         }
     }
 }
