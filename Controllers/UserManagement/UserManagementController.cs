@@ -26,7 +26,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("create-users")]
-        public async Task<IActionResult> CreateUsers(UserManagementInput userManagementInput)
+        public async Task<IActionResult> CreateUsers(UserAccounts userManagementInput)
         {
             var result = await _userManagementService.CreateUsers(userManagementInput);
             return Ok(result);
@@ -34,7 +34,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("update-users")]
-        public async Task<IActionResult> UpdateUsers(UserManagementInput userManagementInput)
+        public async Task<IActionResult> UpdateUsers(UserAccounts userManagementInput)
         {
             var result = await _userManagementService.UpdateUsers(userManagementInput);
             return Ok(result);
@@ -42,7 +42,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("delete-users")]
-        public async Task<IActionResult> DeleteUsers(UserManagementInput userManagementInput)
+        public async Task<IActionResult> DeleteUsers(UserAccounts userManagementInput)
         {
             var result = await _userManagementService.DeleteUsers(userManagementInput);
             return Ok(result);
