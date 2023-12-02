@@ -35,7 +35,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpPost]
         [Route("update-documents")]
-        public async Task<IActionResult> UpdateDocument([FromBody] Documents documentInput)
+        public async Task<IActionResult> UpdateDocuments([FromBody] Documents documentInput)
         {
             var result = await _documentService.UpdateDocuments(documentInput);
             return Ok(result);
@@ -43,7 +43,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
 
         [HttpDelete]
         [Route("delete-documents")]
-        public async Task<IActionResult> DeleteDocument([FromBody] Documents documentInput)
+        public async Task<IActionResult> DeleteDocuments([FromBody] Documents documentInput)
         {
             var result = await _documentService.DeleteDocuments(documentInput);
             return Ok(result);
