@@ -5,17 +5,14 @@ using UniversityOfNottinghamAPI.Services.UserManagement;
 
 namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 {
-    //[ApiVersion("1.0")]
     [Route("api/user-management")]
     [EnableCors]
     public class UserManagementController : Controller
-    {
-        private readonly DatabaseContext _context;
+    {        
         private readonly IUserManagementService _userManagementService;
 
-        public UserManagementController(DatabaseContext context, IUserManagementService userManagementService)
+        public UserManagementController(IUserManagementService userManagementService)
         {
-            _context = context;
             _userManagementService = userManagementService;
         }
 
