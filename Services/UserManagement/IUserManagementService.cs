@@ -4,9 +4,9 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
 {
     public interface IUserManagementService
     {
-        public Task<dynamic> ReadUser();
-        public Task<dynamic> CreateUser(UserManagementInput userManagementInput);
-        public Task<dynamic> UpdateUser(UserManagementInput userManagementInput);
-        public Task<dynamic> DeleteUser(UserManagementInput userManagementInput);
+        public Task<dynamic> ReadUsers();
+        public Task<dynamic> CreateUsers(UserManagementInput userManagementInput);
+        public Task<dynamic> UpdateUsers(UserManagementInput userManagementInput);
+        public Task<dynamic> DeleteUsers(UserManagementInput userManagementInput);
     }
 }

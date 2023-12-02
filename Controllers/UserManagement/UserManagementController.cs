@@ -18,33 +18,33 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("read-users")]
-        public async Task<IActionResult> ReadUser()
+        public async Task<IActionResult> ReadUsers()
         {
-            var result = await _userManagementService.ReadUser();
+            var result = await _userManagementService.ReadUsers();
             return Ok(result);
         }
 
         [HttpPost]
         [Route("create-users")]
-        public async Task<IActionResult> CreateUser(UserManagementInput userManagementInput)
+        public async Task<IActionResult> CreateUsers(UserManagementInput userManagementInput)
         {
-            var result = await _userManagementService.CreateUser(userManagementInput);
+            var result = await _userManagementService.CreateUsers(userManagementInput);
             return Ok(result);
         }
 
         [HttpPost]
         [Route("update-users")]
-        public async Task<IActionResult> UpdateUser(UserManagementInput userManagementInput)
+        public async Task<IActionResult> UpdateUsers(UserManagementInput userManagementInput)
         {
-            var result = await _userManagementService.UpdateUser(userManagementInput);
+            var result = await _userManagementService.UpdateUsers(userManagementInput);
             return Ok(result);
         }
 
         [HttpPost]
         [Route("delete-users")]
-        public async Task<IActionResult> DeleteUser(UserManagementInput userManagementInput)
+        public async Task<IActionResult> DeleteUsers(UserManagementInput userManagementInput)
         {
-            var result = await _userManagementService.DeleteUser(userManagementInput);
+            var result = await _userManagementService.DeleteUsers(userManagementInput);
             return Ok(result);
         }
     }
