@@ -1,7 +1,9 @@
-﻿namespace UniversityOfNottinghamAPI.Services.UserManagement
+﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+
+namespace UniversityOfNottinghamAPI.Services.UserManagement
 {
     public interface IUserManagementService
     {
-        public Task<dynamic> CreateUser(string username, string password);
+        public Task<dynamic> CreateUser(UserManagementInput userManagementInput);
     }
 }

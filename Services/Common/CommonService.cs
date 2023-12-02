@@ -133,6 +133,9 @@ namespace UniversityOfNottinghamAPI.Services.Common
                 case Constant.DocumentService:
                     table = Constant.Documents;
                     break;
+                case Constant.UserManagementService:
+                    table = Constant.UserAccounts;
+                    break;
             }
             return table;
         }

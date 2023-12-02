@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.UserManagement;
 
 namespace UniversityOfNottinghamAPI.Controllers.UserManagement
@@ -18,9 +19,9 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("create-user")]
-        public async Task<IActionResult> CreateUser(string username, string password)
+        public async Task<IActionResult> CreateUser(UserManagementInput userManagementInput)
         {
-            var result = await _userManagementService.CreateUser(username, password);
+            var result = await _userManagementService.CreateUser(userManagementInput);
             return result;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Models.ServiceModels
 {
-    public class UserManagement
+    public class UserManagementInput
     {
         public string userId { get; set; }
         public string userEmail { get; set; }

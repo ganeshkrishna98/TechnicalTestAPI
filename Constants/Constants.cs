@@ -14,6 +14,7 @@
         #endregion
         #region Service Names
         public const string DocumentService = "DocumentService";
+        public const string UserManagementService = "UserManagementService";
         #endregion
         #region Database Table Names
         public const string Documents = "Documents";

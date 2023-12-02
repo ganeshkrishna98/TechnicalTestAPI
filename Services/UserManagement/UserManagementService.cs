@@ -1,19 +1,24 @@
-﻿using UniversityOfNottinghamAPI.Database;
+﻿using System.Reflection.Metadata;
+using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
+using UniversityOfNottinghamAPI.Services.Common;
+using UniversityOfNottinghamAPI.Services.Document;
+using Constant = UniversityOfNottinghamAPI.Constants.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.UserManagement
 {
     public class UserManagementService :IUserManagementService
     {
-        private readonly DatabaseContext _databaseContext;
+        private readonly ICommonService _commonService;
 
-        public UserManagementService(DatabaseContext databaseContext)
+        public UserManagementService(ICommonService commonService)
         {
-            _databaseContext = databaseContext;
+            _commonService = commonService;
         }
-        public async Task<dynamic> CreateUser(string username, string password)
+        public async Task<dynamic> CreateUser(UserManagementInput userManagementInput)
         {
-
-
+            userManagementInput.userId = Guid.NewGuid().ToString();
+            var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, userManagementInput);
 
             return null;
         }
