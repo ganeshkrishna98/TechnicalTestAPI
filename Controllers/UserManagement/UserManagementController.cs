@@ -16,7 +16,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
             _userManagementService = userManagementService;
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("read-users")]
         public async Task<IActionResult> ReadUsers()
         {
@@ -40,7 +40,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpDelete]
         [Route("delete-users")]
         public async Task<IActionResult> DeleteUsers(UserAccounts userManagementInput)
         {

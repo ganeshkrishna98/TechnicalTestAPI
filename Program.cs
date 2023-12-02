@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
 using UniversityOfNottinghamAPI.ModelMapping.Document;
+using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Authentication;
 using UniversityOfNottinghamAPI.Services.Common;
@@ -37,6 +38,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddSingleton(builder.Configuration);
 builder.Services.AddScoped<IAccessLogsService, AccessLogsService>();
+builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
 builder.Services.AddScoped<ICommonService, CommonService>();
 builder.Services.AddScoped<IDatabaseManagementService, DatabaseManagementService>();
 builder.Services.AddScoped<IDeviceManagementService, DeviceManagementService>();
@@ -45,7 +47,7 @@ builder.Services.AddScoped<INotificationManagementService, NotificationManagemen
 builder.Services.AddScoped<IStorageManagementService, StorageManagementService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
-builder.Services.AddScoped<IAuthenticationService, AuthenticationService>();
+builder.Services.AddScoped<IUserManagementModelMapping, UserManagementModelMapping>();
 
 #endregion ConfigureServices
 
