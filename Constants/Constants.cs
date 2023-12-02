@@ -13,8 +13,13 @@
         public const string Delete = "Delete";
         #endregion
         #region Service Names
+        public const string AccessLogsService = "AccessLogsService";
+        public const string DatabaseManagementService = "DatabaseManagementService";
+        public const string DeviceManagementService = "DeviceManagementService";
         public const string DocumentService = "DocumentService";
-        public const string UserManagementService = "UserManagementService";
+        public const string NotificationManagementService = "NotificationManagementService";
+        public const string StorageManagementService = "StorageManagementService";
+        public const string UserManagementService = "UserManagementService";        
         #endregion
         #region Database Table Names
         public const string Documents = "Documents";
