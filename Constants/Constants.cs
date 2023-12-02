@@ -19,12 +19,15 @@
         public const string DocumentService = "DocumentService";
         public const string NotificationManagementService = "NotificationManagementService";
         public const string StorageManagementService = "StorageManagementService";
-        public const string UserManagementService = "UserManagementService";        
+        public const string UserManagementService = "UserManagementService";
         #endregion
         #region Database Table Names
-        public const string Documents = "Documents";
-        public const string UserAccounts = "UserAccounts";
         public const string AccessLogs = "AccessLogs";
+        public const string Devices = "Devices";
+        public const string Documents = "Documents";
+        public const string Notifications = "Notifications";
+        public const string Storages = "Storages";
+        public const string UserAccounts = "UserAccounts";
         #endregion
     }
 }

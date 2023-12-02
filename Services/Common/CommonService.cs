@@ -130,8 +130,20 @@ namespace UniversityOfNottinghamAPI.Services.Common
             string table = string.Empty;
             switch (serviceName)
             {
+                case Constant.AccessLogsService:
+                    table = Constant.AccessLogs;
+                    break;
+                case Constant.DeviceManagementService:
+                    table = Constant.Devices;
+                    break;
                 case Constant.DocumentService:
                     table = Constant.Documents;
+                    break;
+                case Constant.NotificationManagementService:
+                    table = Constant.Notifications;
+                    break;
+                case Constant.StorageManagementService:
+                    table = Constant.Storages;
                     break;
                 case Constant.UserManagementService:
                     table = Constant.UserAccounts;
