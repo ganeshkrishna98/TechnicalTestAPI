@@ -24,6 +24,7 @@ namespace UniversityOfNottinghamAPI.Services.Document
 
         public async Task<dynamic> CreateDocuments(Documents documentInput)
         {
+            documentInput.documentId = Guid.NewGuid().ToString();
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Create, documentInput);
         }
 
