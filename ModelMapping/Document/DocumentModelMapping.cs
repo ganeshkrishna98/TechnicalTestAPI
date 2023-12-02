@@ -1,8 +1,8 @@
 ﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping
+namespace UniversityOfNottinghamAPI.ModelMapping.Document
 {
-    public class DocumentModelMapping:IDocumentModelMapping
+    public class DocumentModelMapping : IDocumentModelMapping
     {
         public async Task<List<Documents>> DocumentMapping(List<object[]> array)
         {

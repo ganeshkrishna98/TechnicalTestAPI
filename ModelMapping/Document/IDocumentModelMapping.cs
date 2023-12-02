@@ -1,6 +1,6 @@
 ﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping
+namespace UniversityOfNottinghamAPI.ModelMapping.Document
 {
     public interface IDocumentModelMapping
     {

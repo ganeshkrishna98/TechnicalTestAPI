@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
-using UniversityOfNottinghamAPI.ModelMapping;
+using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Authentication;
 using UniversityOfNottinghamAPI.Services.Common;

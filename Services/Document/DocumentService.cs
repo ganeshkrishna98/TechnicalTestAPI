@@ -1,4 +1,4 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping;
+﻿using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
 using Constant = UniversityOfNottinghamAPI.Constants.Constants;

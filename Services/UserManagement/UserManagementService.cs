@@ -17,7 +17,8 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
         }        
         public async Task<dynamic> ReadUsers()
         {
-            return await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Read, string.Empty);
+            var result = _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Read, string.Empty);
+            return await 
         }
         public async Task<dynamic> CreateUsers(UserManagementInput userManagementInput)
         {
