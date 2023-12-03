@@ -1,6 +1,46 @@
-﻿namespace UniversityOfNottinghamAPI.Services.AccessLogs
+﻿using System.Reflection.Metadata;
+using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
+using UniversityOfNottinghamAPI.Services.Common;
+using Constant = UniversityOfNottinghamAPI.Constants.Constants;
+
+namespace UniversityOfNottinghamAPI.Services.AccessLogs
 {
     public class AccessLogsService:IAccessLogsService
     {
+        private readonly ICommonService _commonService;
+        private readonly IUserManagementModelMapping _userManagementModelMapping;
+
+        public AccessLogsService(ICommonService commonService, IUserManagementModelMapping userManagementModelMapping)
+        {
+            _commonService = commonService;
+            _userManagementModelMapping = userManagementModelMapping;
+        }
+
+        public async Task<dynamic> ReadAccessLogs()
+        {
+            var result = await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Read, string.Empty);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return result;
+            }
+            else
+                return await _userManagementModelMapping.UserManagementMapping(result);
+        }
+
+        public async Task<dynamic> CreateAccessLogs(AccessLog accessLogsInput)
+        {
+            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Create, accessLogsInput);
+        }
+
+        public async Task<dynamic> UpdateAccessLogs(AccessLog accessLogsInput)
+        {
+            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Update, accessLogsInput);
+        }
+
+        public async Task<dynamic> DeleteAccessLogs(AccessLog accessLogsInput)
+        {
+            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Delete, accessLogsInput);
+        }
     }
 }

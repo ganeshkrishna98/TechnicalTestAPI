@@ -16,7 +16,7 @@ namespace UniversityOfNottinghamAPI.Services.UserManagement
             _userManagementModelMapping = userManagementModelMapping;
         }
 
-        public async Task<List<UserAccounts>> ReadUsers()
+        public async Task<dynamic> ReadUsers()
         {
             var result = await _commonService.ExecuteRequest(typeof(UserManagementService).Name.ToString(), Constant.Read, string.Empty);
             if (result.GetType() == typeof(ErrorModel))

@@ -1,6 +1,6 @@
 ﻿namespace UniversityOfNottinghamAPI.Models.ServiceModels
 {
-    public class AccessLogs
+    public class AccessLog
     {
         public string userId { get; set; }
         public string userEmail{ get; set; }
