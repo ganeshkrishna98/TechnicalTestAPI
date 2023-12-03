@@ -34,7 +34,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Technical Test", Version = "v1" });
 });
 
 builder.Services.AddDbContext<DatabaseContext>(options =>
