@@ -1,8 +1,7 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.DeviceManagement;
+﻿using UniversityOfNottinghamAPI.Constants;
+using UniversityOfNottinghamAPI.ModelMapping.DeviceManagement;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Common;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.DeviceManagement
 {
@@ -19,7 +18,7 @@ namespace UniversityOfNottinghamAPI.Services.DeviceManagement
 
         public async Task<dynamic> ReadDevices()
         {
-            var result = await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Read, string.Empty);
+            var result = await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Read, string.Empty);
             if (result.GetType() == typeof(ErrorModel))
             {
                 return result;
@@ -30,17 +29,18 @@ namespace UniversityOfNottinghamAPI.Services.DeviceManagement
 
         public async Task<dynamic> CreateDevices(Devices deviceManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Create, deviceManagementInput);
+            deviceManagementInput.deviceId = Guid.NewGuid().ToString();
+            return await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Create, deviceManagementInput);
         }
 
         public async Task<dynamic> UpdateDevices(Devices deviceManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Update, deviceManagementInput);
+            return await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Update, deviceManagementInput);
         }
 
         public async Task<dynamic> DeleteDevices(Devices deviceManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Delete, deviceManagementInput);
+            return await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Delete, deviceManagementInput);
         }
     }
 }

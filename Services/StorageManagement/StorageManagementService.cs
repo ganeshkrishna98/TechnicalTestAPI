@@ -19,7 +19,7 @@ namespace UniversityOfNottinghamAPI.Services.StorageManagement
 
         public async Task<dynamic> ReadStorages()
         {
-            var result = await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Read, string.Empty);
+            var result = await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Read, string.Empty);
             if (result.GetType() == typeof(ErrorModel))
             {
                 return result;
@@ -30,17 +30,18 @@ namespace UniversityOfNottinghamAPI.Services.StorageManagement
 
         public async Task<dynamic> CreateStorages(Storages storageManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Create, storageManagementInput);
+            storageManagementInput.storageId = Guid.NewGuid().ToString();
+            return await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Create, storageManagementInput);
         }
 
         public async Task<dynamic> UpdateStorages(Storages storageManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Update, storageManagementInput);
+            return await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Update, storageManagementInput);
         }
 
         public async Task<dynamic> DeleteStorages(Storages storageManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Delete, storageManagementInput);
+            return await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Delete, storageManagementInput);
         }
     }
 }
