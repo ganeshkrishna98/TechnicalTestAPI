@@ -31,7 +31,7 @@ namespace UniversityOfNottinghamAPI.Controllers.StorageManagement
 
         [HttpPost]
         [Route("create-storages")]
-        public async Task<IActionResult> CreateStorages(Storages storageManagementInput)
+        public async Task<IActionResult> CreateStorages([FromBody] Storages storageManagementInput)
         {
             var result = await _storageManagementService.CreateStorages(storageManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -44,7 +44,7 @@ namespace UniversityOfNottinghamAPI.Controllers.StorageManagement
 
         [HttpPost]
         [Route("update-storages")]
-        public async Task<IActionResult> UpdateStorages(Storages storageManagementInput)
+        public async Task<IActionResult> UpdateStorages([FromBody] Storages storageManagementInput)
         {
             var result = await _storageManagementService.UpdateStorages(storageManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -57,7 +57,7 @@ namespace UniversityOfNottinghamAPI.Controllers.StorageManagement
 
         [HttpDelete]
         [Route("delete-storages")]
-        public async Task<IActionResult> DeleteStorages(Storages storageManagementInput)
+        public async Task<IActionResult> DeleteStorages([FromBody] Storages storageManagementInput)
         {
             var result = await _storageManagementService.DeleteStorages(storageManagementInput);
             if (result.GetType() == typeof(ErrorModel))

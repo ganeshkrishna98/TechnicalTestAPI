@@ -31,7 +31,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("create-users")]
-        public async Task<IActionResult> CreateUsers(UserAccounts userManagementInput)
+        public async Task<IActionResult> CreateUsers([FromBody] UserAccounts userManagementInput)
         {
             var result = await _userManagementService.CreateUsers(userManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -44,7 +44,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpPost]
         [Route("update-users")]
-        public async Task<IActionResult> UpdateUsers(UserAccounts userManagementInput)
+        public async Task<IActionResult> UpdateUsers([FromBody] UserAccounts userManagementInput)
         {
             var result = await _userManagementService.UpdateUsers(userManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -57,7 +57,7 @@ namespace UniversityOfNottinghamAPI.Controllers.UserManagement
 
         [HttpDelete]
         [Route("delete-users")]
-        public async Task<IActionResult> DeleteUsers(UserAccounts userManagementInput)
+        public async Task<IActionResult> DeleteUsers([FromBody] UserAccounts userManagementInput)
         {
             var result = await _userManagementService.DeleteUsers(userManagementInput);
             if (result.GetType() == typeof(ErrorModel))

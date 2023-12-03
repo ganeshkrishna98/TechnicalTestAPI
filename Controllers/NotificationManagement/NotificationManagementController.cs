@@ -31,7 +31,7 @@ namespace UniversityOfNottinghamAPI.Controllers.NotificationManagement
 
         [HttpPost]
         [Route("create-notifications")]
-        public async Task<IActionResult> CreateNotifications(Notifications notificationsInput)
+        public async Task<IActionResult> CreateNotifications([FromBody] Notifications notificationsInput)
         {
             var result = await _notificationManagementService.CreateNotifications(notificationsInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -44,7 +44,7 @@ namespace UniversityOfNottinghamAPI.Controllers.NotificationManagement
 
         [HttpPost]
         [Route("update-notifications")]
-        public async Task<IActionResult> UpdateNotifications(Notifications notificationsInput)
+        public async Task<IActionResult> UpdateNotifications([FromBody] Notifications notificationsInput)
         {
             var result = await _notificationManagementService.UpdateNotifications(notificationsInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -57,7 +57,7 @@ namespace UniversityOfNottinghamAPI.Controllers.NotificationManagement
 
         [HttpDelete]
         [Route("delete-notifications")]
-        public async Task<IActionResult> DeleteNotifications(Notifications notificationsInput)
+        public async Task<IActionResult> DeleteNotifications([FromBody] Notifications notificationsInput)
         {
             var result = await _notificationManagementService.DeleteNotifications(notificationsInput);
             if (result.GetType() == typeof(ErrorModel))

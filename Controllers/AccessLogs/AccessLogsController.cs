@@ -31,7 +31,7 @@ namespace UniversityOfNottinghamAPI.Controllers.AccessLogs
 
         [HttpPost]
         [Route("create-access-logs")]
-        public async Task<IActionResult> CreateAccessLogs(AccessLog accessLogsInput)
+        public async Task<IActionResult> CreateAccessLogs([FromBody] AccessLog accessLogsInput)
         {
             var result = await _accessLogsService.CreateAccessLogs(accessLogsInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -44,7 +44,7 @@ namespace UniversityOfNottinghamAPI.Controllers.AccessLogs
 
         [HttpPost]
         [Route("update-access-logs")]
-        public async Task<IActionResult> UpdateAccessLogs(AccessLog accessLogsInput)
+        public async Task<IActionResult> UpdateAccessLogs([FromBody] AccessLog accessLogsInput)
         {
             var result = await _accessLogsService.UpdateAccessLogs(accessLogsInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -57,7 +57,7 @@ namespace UniversityOfNottinghamAPI.Controllers.AccessLogs
 
         [HttpDelete]
         [Route("delete-access-logs")]
-        public async Task<IActionResult> DeleteAccessLogs(AccessLog accessLogsInput)
+        public async Task<IActionResult> DeleteAccessLogs([FromBody] AccessLog accessLogsInput)
         {
             var result = await _accessLogsService.DeleteAccessLogs(accessLogsInput);
             if (result.GetType() == typeof(ErrorModel))

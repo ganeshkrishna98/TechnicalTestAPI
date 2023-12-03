@@ -31,7 +31,7 @@ namespace UniversityOfNottinghamAPI.Controllers.DeviceManagement
 
         [HttpPost]
         [Route("create-devices")]
-        public async Task<IActionResult> CreateDevices(Devices deviceManagementInput)
+        public async Task<IActionResult> CreateDevices([FromBody] Devices deviceManagementInput)
         {
             var result = await _deviceManagementService.CreateDevices(deviceManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -44,7 +44,7 @@ namespace UniversityOfNottinghamAPI.Controllers.DeviceManagement
 
         [HttpPost]
         [Route("update-devices")]
-        public async Task<IActionResult> UpdateDevices(Devices deviceManagementInput)
+        public async Task<IActionResult> UpdateDevices([FromBody] Devices deviceManagementInput)
         {
             var result = await _deviceManagementService.UpdateDevices(deviceManagementInput);
             if (result.GetType() == typeof(ErrorModel))
@@ -57,7 +57,7 @@ namespace UniversityOfNottinghamAPI.Controllers.DeviceManagement
 
         [HttpDelete]
         [Route("delete-devices")]
-        public async Task<IActionResult> DeleteDevices(Devices deviceManagementInput)
+        public async Task<IActionResult> DeleteDevices([FromBody] Devices deviceManagementInput)
         {
             var result = await _deviceManagementService.DeleteDevices(deviceManagementInput);
             if (result.GetType() == typeof(ErrorModel))
