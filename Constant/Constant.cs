@@ -1,13 +1,17 @@
 ﻿namespace UniversityOfNottinghamAPI.Constants
 {
-    public class Constants
+    public class Constant
     {
-        #region Status Constants
+        #region Status Response Constants
         public const string Success = "Success";
         public const string Failed = "Failed";
         public const string FileNotSelected = "File is not selected";
         public const string FileIsEmpty = "File is empty";
         public const string FileNotFound = "File not found";
+        public const string LoginSuccessful = "Login successful";
+        public const string InvalidCredentials = "Invalid username or password";
+        public const string SuccessfulUserCreation = "User registration successful";
+        public const string UsernameAlreadyExists = "Username already exists";
         #endregion
         #region CRED Constants
         public const string Create = "Create";

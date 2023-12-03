@@ -5,7 +5,7 @@ using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
-using Constant = UniversityOfNottinghamAPI.Constants.Constants;
+using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Common
 {

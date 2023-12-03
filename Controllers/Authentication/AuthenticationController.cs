@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using UniversityOfNottinghamAPI.Constants;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Authentication;
 
@@ -24,11 +25,11 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
 
             if (await _authService.AuthenticateUser(username, password))
             {
-                return Ok(new { Success = true, Message = "Login successful" });
+                return Ok(Constant.LoginSuccessful);
             }
             else
             {
-                return BadRequest(new { Success = false, Message = "Invalid username or password" });
+                return BadRequest(Constant.InvalidCredentials);
             }
         }
 
@@ -40,11 +41,11 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
 
             if (await _authService.CreateUser(username, password))
             {
-                return Ok(new { Success = true, Message = "User registration successful" });
+                return Ok(Constant.SuccessfulUserCreation);
             }
             else
             {
-                return BadRequest(new { Success = false, Message = "Username already exists" });
+                return BadRequest(Constant.UsernameAlreadyExists);
             }
         }
     }

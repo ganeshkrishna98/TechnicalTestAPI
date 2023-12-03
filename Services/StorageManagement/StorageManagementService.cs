@@ -2,7 +2,7 @@
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Common;
-using Constant = UniversityOfNottinghamAPI.Constants.Constants;
+using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.StorageManagement
 {
