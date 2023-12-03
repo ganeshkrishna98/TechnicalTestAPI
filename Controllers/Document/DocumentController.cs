@@ -57,12 +57,12 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("download-documents")]
-        public async Task<IActionResult> DownloadDocuments([FromBody] Documents documentInput)
+        public async Task<IActionResult> DownloadDocuments([FromQuery] string fileName)
         {
-            var result = await _documentService.DownloadDocuments(documentInput);
-            return Ok(result);
+            var result = await _documentService.DownloadDocuments(fileName);
+            return Ok(File(result, "application/octet-stream", fileName));
         }
     }
 }

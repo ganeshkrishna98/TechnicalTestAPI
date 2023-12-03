@@ -1,4 +1,5 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.Document;
+﻿using Microsoft.AspNetCore.Components.Forms;
+using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
 using Constant = UniversityOfNottinghamAPI.Constants.Constants;
@@ -40,13 +41,12 @@ namespace UniversityOfNottinghamAPI.Services.Document
 
         public async Task<dynamic> UploadDocuments(FileModel inputfile)
         {
-
             if (inputfile.File == null)
                 return Constant.FileNotSelected;
-            if(inputfile.File.Length == 0)
+            if (inputfile.File.Length == 0)
                 return Constant.FileIsEmpty;
             var fileName = Path.GetFileName(inputfile.File.FileName);
-            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)+"/Downloads", "wwwroot", "Uploads", fileName);
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads", "wwwroot", "Uploads", fileName);
 
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
@@ -56,9 +56,15 @@ namespace UniversityOfNottinghamAPI.Services.Document
             return Constant.Success;
         }
 
-        public async Task<dynamic> DownloadDocuments(Documents documentInput)
+        public async Task<dynamic> DownloadDocuments(string fileName)
         {
-            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads", "wwwroot", "Uploads", fileName);
+            if (!File.Exists(filePath))
+            {
+                return Constant.FileNotFound;
+            }
+            else
+                return File.ReadAllBytes(filePath);
         }
     }
 }

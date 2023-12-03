@@ -7,6 +7,7 @@
         public const string Failed = "Failed";
         public const string FileNotSelected = "File is not selected";
         public const string FileIsEmpty = "File is empty";
+        public const string FileNotFound = "File not found";
         #endregion
         #region CRED Constants
         public const string Create = "Create";
