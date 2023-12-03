@@ -8,7 +8,7 @@ namespace UniversityOfNottinghamAPI.Models.ServerModels
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string storageId { get; set; }
-        public string stroageName { get; set; }
+        public string storageName { get; set; }
         public string createdDate { get; set; }
         public string createdTime { get; set; }
         public string createdUserId { get; set; }
