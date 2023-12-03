@@ -48,5 +48,21 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
             var result = await _documentService.DeleteDocuments(documentInput);
             return Ok(result);
         }
+
+        [HttpPost]
+        [Route("upload-documents")]
+        public async Task<IActionResult> UploadDocuments([FromForm] FileModel inputfile)
+        {
+            var result = await _documentService.UploadDocuments(inputfile);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Route("download-documents")]
+        public async Task<IActionResult> DownloadDocuments([FromBody] Documents documentInput)
+        {
+            var result = await _documentService.DownloadDocuments(documentInput);
+            return Ok(result);
+        }
     }
 }

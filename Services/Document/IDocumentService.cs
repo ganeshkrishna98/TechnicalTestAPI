@@ -11,5 +11,8 @@ namespace UniversityOfNottinghamAPI.Services.Document
         public Task<dynamic> UpdateDocuments(Documents documentInput);
 
         public Task<dynamic> DeleteDocuments(Documents documentInput);
+
+        public Task<dynamic> UploadDocuments(FileModel inputfile);
+        public Task<dynamic> DownloadDocuments(Documents documentInput);
     }
 }

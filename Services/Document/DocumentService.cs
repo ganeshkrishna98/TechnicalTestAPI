@@ -37,5 +37,28 @@ namespace UniversityOfNottinghamAPI.Services.Document
         {
             return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
         }
+
+        public async Task<dynamic> UploadDocuments(FileModel inputfile)
+        {
+
+            if (inputfile.File == null)
+                return Constant.FileNotSelected;
+            if(inputfile.File.Length == 0)
+                return Constant.FileIsEmpty;
+            var fileName = Path.GetFileName(inputfile.File.FileName);
+            var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)+"/Downloads", "wwwroot", "Uploads", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await inputfile.File.CopyToAsync(stream);
+            }
+
+            return Constant.Success;
+        }
+
+        public async Task<dynamic> DownloadDocuments(Documents documentInput)
+        {
+            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
+        }
     }
 }
