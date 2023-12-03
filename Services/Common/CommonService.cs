@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
+using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
@@ -155,20 +156,28 @@ namespace UniversityOfNottinghamAPI.Services.Common
             return table;
         }
 
-        internal static async Task<List<string>> GetSQLColumns(string serviceName)
+        internal static async Task<List<string>> GetSQLColumns(string tableName)
         {
             List<string> columns = new List<string>();
-            switch (serviceName)
+            switch (tableName)
             {
+                case Constant.AccessLogs:
+                    columns.AddRange(TableColumns.AccessLogsColumns.Split(','));
+                    break;
+                case Constant.Devices:
+                    columns.AddRange(TableColumns.DevicesColumns.Split(','));
+                    break;
                 case Constant.Documents:
                     columns.AddRange(TableColumns.DocumentsColumns.Split(','));
                     break;
-
+                case Constant.Notifications:
+                    columns.AddRange(TableColumns.NotificationsColumns.Split(','));
+                    break;
+                case Constant.Storages:
+                    columns.AddRange(TableColumns.StoragesColumns.Split(','));
+                    break;
                 case Constant.UserAccounts:
                     columns.AddRange(TableColumns.UserAccountColumns.Split(','));
-                    break;
-                case Constant.AccessLogs:
-                    columns.AddRange(TableColumns.AccessLogs.Split(','));
                     break;
             }
             return columns;
@@ -176,7 +185,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
 
         #endregion Internal Functions To Fetch Data and Generate Query
 
-
+        #region Error Response Builder
         public async Task<ErrorModel> ErrorResponseBuilder(string input)
         {
             ErrorModel error = new ErrorModel();
@@ -187,5 +196,6 @@ namespace UniversityOfNottinghamAPI.Services.Common
             error.ErrorCode = "400";
             return error;
         }
+        #endregion Error Response Builder
     }
 }
