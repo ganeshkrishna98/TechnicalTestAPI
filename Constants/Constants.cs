@@ -16,7 +16,7 @@
         public const string Delete = "Delete";
         #endregion
         #region Service Names
-        public const string AccessLogService = "AccessLogService";
+        public const string AccessLogsService = "AccessLogsService";
         public const string DatabaseManagementService = "DatabaseManagementService";
         public const string DeviceManagementService = "DeviceManagementService";
         public const string DocumentService = "DocumentService";

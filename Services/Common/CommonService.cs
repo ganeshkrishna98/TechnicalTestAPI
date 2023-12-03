@@ -133,7 +133,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
             string table = string.Empty;
             switch (serviceName)
             {
-                case Constant.AccessLogService:
+                case Constant.AccessLogsService:
                     table = Constant.AccessLogs;
                     break;
                 case Constant.DeviceManagementService:
@@ -166,6 +166,9 @@ namespace UniversityOfNottinghamAPI.Services.Common
 
                 case Constant.UserAccounts:
                     columns.AddRange(TableColumns.UserAccountColumns.Split(','));
+                    break;
+                case Constant.AccessLogs:
+                    columns.AddRange(TableColumns.AccessLogs.Split(','));
                     break;
             }
             return columns;
