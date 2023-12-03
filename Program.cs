@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
+using UniversityOfNottinghamAPI.ModelMapping.AccessLogs;
 using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
@@ -48,6 +49,7 @@ builder.Services.AddScoped<IStorageManagementService, StorageManagementService>(
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
 builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
 builder.Services.AddScoped<IUserManagementModelMapping, UserManagementModelMapping>();
+builder.Services.AddScoped<IAccessLogsModelMapping, AccessLogsModelMapping>();
 
 #endregion ConfigureServices
 
