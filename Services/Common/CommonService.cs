@@ -119,7 +119,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
                             {
                                 property = inputParameters.GetType().GetProperty(columnNames.FirstOrDefault());
                                 value = property.GetValue(inputParameters, null);
-                                queryBuilder.Append($"WHERE {columnNames.FirstOrDefault()} = '{value}';");
+                                queryBuilder.Append($" WHERE {columnNames.FirstOrDefault()} = '{value}';");
                             }
                         }
                     }
