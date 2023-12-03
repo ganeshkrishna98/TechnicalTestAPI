@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Forms;
-using UniversityOfNottinghamAPI.ModelMapping.Document;
+﻿using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
 using Constant = UniversityOfNottinghamAPI.Constants.Constants;
@@ -17,10 +16,15 @@ namespace UniversityOfNottinghamAPI.Services.Document
             _documentModelMapping = documentModelMapping;
         }
 
-        public async Task<List<Documents>> ReadDocuments()
+        public async Task<dynamic> ReadDocuments()
         {
             var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Read, string.Empty);
-            return await _documentModelMapping.DocumentMapping(result);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return result;
+            }
+            else
+                return await _documentModelMapping.DocumentMapping(result);
         }
 
         public async Task<dynamic> CreateDocuments(Documents documentInput)
@@ -42,9 +46,9 @@ namespace UniversityOfNottinghamAPI.Services.Document
         public async Task<dynamic> UploadDocuments(FileModel inputfile)
         {
             if (inputfile.File == null)
-                return Constant.FileNotSelected;
+                return await _commonService.ErrorResponseBuilder(Constant.FileNotSelected);
             if (inputfile.File.Length == 0)
-                return Constant.FileIsEmpty;
+                return await _commonService.ErrorResponseBuilder(Constant.FileIsEmpty);
             var fileName = Path.GetFileName(inputfile.File.FileName);
             var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads", "wwwroot", "Uploads", fileName);
 
@@ -61,7 +65,7 @@ namespace UniversityOfNottinghamAPI.Services.Document
             var filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "/Downloads", "wwwroot", "Uploads", fileName);
             if (!File.Exists(filePath))
             {
-                return Constant.FileNotFound;
+                return await _commonService.ErrorResponseBuilder(Constant.FileNotFound);
             }
             else
                 return File.ReadAllBytes(filePath);

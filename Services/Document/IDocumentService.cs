@@ -4,7 +4,7 @@ namespace UniversityOfNottinghamAPI.Services.Document
 {
     public interface IDocumentService
     {
-        public Task<List<Documents>> ReadDocuments();
+        public Task<dynamic> ReadDocuments();
 
         public Task<dynamic> CreateDocuments(Documents documentInput);
 

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Text;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
 using Constant = UniversityOfNottinghamAPI.Constants.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Common
@@ -20,7 +22,8 @@ namespace UniversityOfNottinghamAPI.Services.Common
             #region Get Table Name
 
             var tableName = GetTableName(serviceName);
-
+            if (tableName.IsNullOrEmpty())
+                return await ErrorResponseBuilder(String.Empty);
             #endregion Get Table Name
 
             #region Generate Query
@@ -52,7 +55,7 @@ namespace UniversityOfNottinghamAPI.Services.Common
                 if (response == 1)
                     return Constant.Success;
                 else
-                    return Constant.Failed;
+                    return await ErrorResponseBuilder(Constant.Failed);
             }
 
             #endregion SQL Execution Part
@@ -169,5 +172,17 @@ namespace UniversityOfNottinghamAPI.Services.Common
         }
 
         #endregion Internal Functions To Fetch Data and Generate Query
+
+
+        public async Task<ErrorModel> ErrorResponseBuilder(string input)
+        {
+            ErrorModel error = new ErrorModel();
+            if (!input.IsNullOrEmpty())
+                error.Message = input;
+            else
+                error.Message = "Undefined Error";
+            error.ErrorCode = "400";
+            return error;
+        }
     }
 }

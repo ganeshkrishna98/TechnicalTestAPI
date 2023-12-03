@@ -22,6 +22,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> ReadDocuments()
         {
             var result = await _documentService.ReadDocuments();
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -30,6 +34,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> CreateDocuments([FromBody] Documents documentInput)
         {
             var result = await _documentService.CreateDocuments(documentInput);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -38,6 +46,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> UpdateDocuments([FromBody] Documents documentInput)
         {
             var result = await _documentService.UpdateDocuments(documentInput);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -46,6 +58,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> DeleteDocuments([FromBody] Documents documentInput)
         {
             var result = await _documentService.DeleteDocuments(documentInput);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -54,6 +70,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> UploadDocuments([FromForm] FileModel inputfile)
         {
             var result = await _documentService.UploadDocuments(inputfile);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(result);
         }
 
@@ -62,6 +82,10 @@ namespace UniversityOfNottinghamAPI.Controllers.Document
         public async Task<IActionResult> DownloadDocuments([FromQuery] string fileName)
         {
             var result = await _documentService.DownloadDocuments(fileName);
+            if (result.GetType() == typeof(ErrorModel))
+            {
+                return BadRequest(result);
+            }
             return Ok(File(result, "application/octet-stream", fileName));
         }
     }
