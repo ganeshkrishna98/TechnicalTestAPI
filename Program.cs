@@ -2,7 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using UniversityOfNottinghamAPI.Database;
 using UniversityOfNottinghamAPI.ModelMapping.AccessLogs;
+using UniversityOfNottinghamAPI.ModelMapping.DatabaseManagement;
+using UniversityOfNottinghamAPI.ModelMapping.DeviceManagement;
 using UniversityOfNottinghamAPI.ModelMapping.Document;
+using UniversityOfNottinghamAPI.ModelMapping.NotificationManagement;
+using UniversityOfNottinghamAPI.ModelMapping.StorageManagement;
 using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
 using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Authentication;
@@ -47,10 +51,14 @@ builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<INotificationManagementService, NotificationManagementService>();
 builder.Services.AddScoped<IStorageManagementService, StorageManagementService>();
 builder.Services.AddScoped<IUserManagementService, UserManagementService>();
-builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
-builder.Services.AddScoped<IUserManagementModelMapping, UserManagementModelMapping>();
-builder.Services.AddScoped<IAccessLogsModelMapping, AccessLogsModelMapping>();
 
+builder.Services.AddScoped<IAccessLogsModelMapping, AccessLogsModelMapping>();
+builder.Services.AddScoped<IDatabaseManagementModelMapping, DatabaseManagementModelMapping>();
+builder.Services.AddScoped<IDeviceManagementModelMapping, DeviceManagementModelMapping>();
+builder.Services.AddScoped<IDocumentModelMapping, DocumentModelMapping>();
+builder.Services.AddScoped<INotificationManagementModelMapping, NotificationManagementModelMapping>();
+builder.Services.AddScoped<IStorageManagementModelMapping, StorageManagementModelMapping>();
+builder.Services.AddScoped<IUserManagementModelMapping, UserManagementModelMapping>();
 #endregion ConfigureServices
 
 var app = builder.Build();
