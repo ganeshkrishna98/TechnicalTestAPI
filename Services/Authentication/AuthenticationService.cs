@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
+using UniversityOfNottinghamAPI.Constants;
 using UniversityOfNottinghamAPI.Database;
 using UniversityOfNottinghamAPI.Models.ServerModels;
+using UniversityOfNottinghamAPI.Models.ServiceModels;
 
 namespace UniversityOfNottinghamAPI.Services.Authentication
 {
@@ -14,7 +16,7 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
             _dbContext = dbContext;
         }
 
-        public async Task<bool> AuthenticateUser(string email, string password)
+        public async Task<AuthenticationOutput> AuthenticateUser(string email, string password)
         {
             try
             {
@@ -23,17 +25,46 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
 
                 if (user != null && VerifyPassword(password, user.passwordHash, user.passwordSalt))
                 {
-                    return true;
+                    AuthenticationOutput authenticationOutput = new()
+                    {
+                        loginStatus = Constant.Success,
+                        userEmail = email,
+                        userId = await GetUserId(email)
+                    };
+                    return authenticationOutput;
                 }
                 else
                 {
-                    return false;
+                    if(user != null)
+                    {
+                        AuthenticationOutput authenticationOutput = new()
+                        {
+                            loginStatus = Constant.Failed,
+                            userEmail = email,
+                            userId = await GetUserId(email)
+                        };
+                        return authenticationOutput;
+                    }
+                    else
+                    {
+                        AuthenticationOutput authenticationOutput = new()
+                        {
+                            loginStatus = Constant.Failed,
+                            userEmail = email
+                        };
+                        return authenticationOutput;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception in AuthenticateUser: {ex}");
-                return false;
+                AuthenticationOutput authenticationOutput = new()
+                {
+                    loginStatus = Constant.Failed,
+                    userEmail = email
+                };
+                return authenticationOutput;
             }
         }
 

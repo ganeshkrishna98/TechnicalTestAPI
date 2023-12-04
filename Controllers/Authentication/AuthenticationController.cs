@@ -23,17 +23,14 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
             var userEmail = model.userEmail;
             var password = model.password;
 
-            if (await _authService.AuthenticateUser(userEmail, password))
+            AuthenticationOutput result = await _authService.AuthenticateUser(userEmail, password);
+            if (result.loginStatus==Constant.Success)
             {
-                AuthenticationOutput authenticationOutput = new AuthenticationOutput();
-                authenticationOutput.loginStatus =
-                    Constant.Success;
-                authenticationOutput.userId = await _authService.GetUserId(userEmail);
-                return Ok(authenticationOutput);
+                return Ok(result);
             }
             else
             {
-                return BadRequest(Constant.InvalidCredentials);
+                return BadRequest(result);
             }
         }
 
