@@ -101,13 +101,27 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
 
         private (string Hash, string Salt) GeneratePasswordHash(string password)
         {
-            using (var deriveBytes = new Rfc2898DeriveBytes(password, 16, 10000))
-            {
-                byte[] salt = deriveBytes.Salt;
-                byte[] hash = deriveBytes.GetBytes(32);
+            HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA256;
+            int iterations = 10000;
 
-                return (Convert.ToBase64String(hash), Convert.ToBase64String(salt));
+            byte[] salt = GenerateRandomSalt();
+
+            using var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations, hashAlgorithm);
+            byte[] hash = deriveBytes.GetBytes(32);
+
+            return (Convert.ToBase64String(hash), Convert.ToBase64String(salt));
+        }
+
+        private byte[] GenerateRandomSalt()
+        {
+            byte[] salt = new byte[16];
+
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
             }
+
+            return salt;
         }
 
         private bool VerifyPassword(string password, string storedHash, string storedSalt)
@@ -117,12 +131,13 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                 byte[] salt = Convert.FromBase64String(storedSalt);
                 byte[] storedHashBytes = Convert.FromBase64String(storedHash);
 
-                using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, 10000))
-                {
-                    byte[] computedHashBytes = deriveBytes.GetBytes(32);
+                HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA256;
+                int iterations = 10000;
 
-                    return computedHashBytes.SequenceEqual(storedHashBytes);
-                }
+                using var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations, hashAlgorithm);
+                byte[] computedHashBytes = deriveBytes.GetBytes(32);
+
+                return computedHashBytes.SequenceEqual(storedHashBytes);
             }
             catch (Exception ex)
             {
@@ -130,6 +145,7 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                 return false;
             }
         }
+
 
         public async Task<string> GetUserId(string email)
         {
