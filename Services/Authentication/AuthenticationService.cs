@@ -99,5 +99,12 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                 return false;
             }
         }
+
+        public async Task<string> GetUserId(string email)
+        {
+            var userAcc = await _dbContext.UserAuthentication.FirstOrDefaultAsync(x =>x.userEmail== email);
+
+            return userAcc?.userId;
+        }
     }
 }

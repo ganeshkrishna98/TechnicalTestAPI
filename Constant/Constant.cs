@@ -8,10 +8,9 @@
         public const string FileNotSelected = "File is not selected";
         public const string FileIsEmpty = "File is empty";
         public const string FileNotFound = "File not found";
-        public const string LoginSuccessful = "Login successful";
         public const string InvalidCredentials = "Invalid username or password";
         public const string SuccessfulUserCreation = "User registration successful";
-        public const string UsernameAlreadyExists = "Username already exists";
+        public const string userEmailAlreadyExists = "User email already exists";
         #endregion
         #region CRED Constants
         public const string Create = "Create";

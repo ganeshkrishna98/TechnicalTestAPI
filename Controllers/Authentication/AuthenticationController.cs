@@ -20,12 +20,16 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] AuthenticationLoginInput model)
         {
-            var username = model.userEmail;
+            var userEmail = model.userEmail;
             var password = model.password;
 
-            if (await _authService.AuthenticateUser(username, password))
+            if (await _authService.AuthenticateUser(userEmail, password))
             {
-                return Ok(Constant.LoginSuccessful);
+                AuthenticationOutput authenticationOutput = new AuthenticationOutput();
+                authenticationOutput.loginStatus =
+                    Constant.Success;
+                authenticationOutput.userId = await _authService.GetUserId(userEmail);
+                return Ok(authenticationOutput);
             }
             else
             {
@@ -36,16 +40,16 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] AuthenticationLoginInput model)
         {
-            var username = model.userEmail;
+            var userEmail = model.userEmail;
             var password = model.password;
 
-            if (await _authService.CreateUser(username, password))
+            if (await _authService.CreateUser(userEmail, password))
             {
                 return Ok(Constant.SuccessfulUserCreation);
             }
             else
             {
-                return BadRequest(Constant.UsernameAlreadyExists);
+                return BadRequest(Constant.userEmailAlreadyExists);
             }
         }
     }
