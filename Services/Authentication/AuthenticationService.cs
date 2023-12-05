@@ -22,7 +22,6 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
             {
                 var user = await _dbContext.UserAuthentication
                     .SingleOrDefaultAsync(u => u.userEmail.ToLower() == email.ToLower());
-
                 if (user != null && VerifyPassword(password, user.passwordHash, user.passwordSalt))
                 {
                     AuthenticationOutput authenticationOutput = new()
@@ -76,9 +75,7 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                 {
                     return false;
                 }
-
                 var (hash, salt) = GeneratePasswordHash(password);
-
                 var newUser = new UserAuthenticationModel
                 {
                     userId = Guid.NewGuid().ToString(),
@@ -86,10 +83,8 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                     passwordHash = hash,
                     passwordSalt = salt
                 };
-
                 _dbContext.UserAuthentication.Add(newUser);
                 await _dbContext.SaveChangesAsync();
-
                 return true;
             }
             catch (Exception ex)
@@ -103,24 +98,19 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
         {
             HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA256;
             int iterations = 10000;
-
             byte[] salt = GenerateRandomSalt();
-
             using var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations, hashAlgorithm);
             byte[] hash = deriveBytes.GetBytes(32);
-
             return (Convert.ToBase64String(hash), Convert.ToBase64String(salt));
         }
 
         private byte[] GenerateRandomSalt()
         {
             byte[] salt = new byte[16];
-
             using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-
             return salt;
         }
 
@@ -130,13 +120,10 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
             {
                 byte[] salt = Convert.FromBase64String(storedSalt);
                 byte[] storedHashBytes = Convert.FromBase64String(storedHash);
-
                 HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA256;
                 int iterations = 10000;
-
                 using var deriveBytes = new Rfc2898DeriveBytes(password, salt, iterations, hashAlgorithm);
                 byte[] computedHashBytes = deriveBytes.GetBytes(32);
-
                 return computedHashBytes.SequenceEqual(storedHashBytes);
             }
             catch (Exception ex)
@@ -150,7 +137,6 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
         public async Task<string> GetUserId(string email)
         {
             var userAcc = await _dbContext.UserAuthentication.FirstOrDefaultAsync(x => x.userEmail == email);
-
             return userAcc?.userId;
         }
     }
