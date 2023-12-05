@@ -22,7 +22,6 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
         {
             var userEmail = model.userEmail;
             var password = model.password;
-
             AuthenticationOutput result = await _authService.AuthenticateUser(userEmail, password);
             if (result.loginStatus == Constant.Success)
             {
@@ -39,7 +38,6 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
         {
             var userEmail = model.userEmail;
             var password = model.password;
-
             if (await _authService.CreateUser(userEmail, password))
             {
                 return Ok(Constant.SuccessfulUserCreation);
