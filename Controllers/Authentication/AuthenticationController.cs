@@ -24,7 +24,7 @@ namespace UniversityOfNottinghamAPI.Controllers.Authentication
             var password = model.password;
 
             AuthenticationOutput result = await _authService.AuthenticateUser(userEmail, password);
-            if (result.loginStatus==Constant.Success)
+            if (result.loginStatus == Constant.Success)
             {
                 return Ok(result);
             }

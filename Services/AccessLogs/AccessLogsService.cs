@@ -1,7 +1,7 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.AccessLogs;
+﻿using UniversityOfNottinghamAPI.Constants;
+using UniversityOfNottinghamAPI.ModelMapping.AccessLogs;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.AccessLogs
 {

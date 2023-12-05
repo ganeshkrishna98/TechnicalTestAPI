@@ -20,7 +20,7 @@ namespace UniversityOfNottinghamAPI.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AccessLogsModel>().HasKey(x => x.userId);
-            modelBuilder.Entity<DevicesModel>().HasKey(x => x.deviceId);            
+            modelBuilder.Entity<DevicesModel>().HasKey(x => x.deviceId);
             modelBuilder.Entity<DocumentsModel>().HasKey(x => x.documentId);
             modelBuilder.Entity<NotificationsModel>().HasKey(x => x.notificationId);
             modelBuilder.Entity<StoragesModel>().HasKey(x => x.storageId);

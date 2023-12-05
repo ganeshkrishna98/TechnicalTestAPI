@@ -35,7 +35,7 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
                 }
                 else
                 {
-                    if(user != null)
+                    if (user != null)
                     {
                         AuthenticationOutput authenticationOutput = new()
                         {
@@ -149,7 +149,7 @@ namespace UniversityOfNottinghamAPI.Services.Authentication
 
         public async Task<string> GetUserId(string email)
         {
-            var userAcc = await _dbContext.UserAuthentication.FirstOrDefaultAsync(x =>x.userEmail== email);
+            var userAcc = await _dbContext.UserAuthentication.FirstOrDefaultAsync(x => x.userEmail == email);
 
             return userAcc?.userId;
         }

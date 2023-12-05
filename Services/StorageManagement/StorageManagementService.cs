@@ -1,8 +1,7 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.StorageManagement;
+﻿using UniversityOfNottinghamAPI.Constants;
+using UniversityOfNottinghamAPI.ModelMapping.StorageManagement;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.AccessLogs;
 using UniversityOfNottinghamAPI.Services.Common;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.StorageManagement
 {

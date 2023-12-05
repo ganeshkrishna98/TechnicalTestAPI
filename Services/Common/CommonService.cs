@@ -1,11 +1,10 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using UniversityOfNottinghamAPI.Constants;
 using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Common
 {

@@ -1,7 +1,7 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
+﻿using UniversityOfNottinghamAPI.Constants;
+using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.UserManagement
 {

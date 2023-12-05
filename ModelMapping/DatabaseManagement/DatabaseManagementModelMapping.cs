@@ -2,7 +2,7 @@
 
 namespace UniversityOfNottinghamAPI.ModelMapping.DatabaseManagement
 {
-    public class DatabaseManagementModelMapping: IDatabaseManagementModelMapping
+    public class DatabaseManagementModelMapping : IDatabaseManagementModelMapping
     {
         public async Task<List<Databases>> DatabaseManagementMapping(List<object[]> array)
         {

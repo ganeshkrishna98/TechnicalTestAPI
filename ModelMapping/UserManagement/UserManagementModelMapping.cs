@@ -2,7 +2,7 @@
 
 namespace UniversityOfNottinghamAPI.ModelMapping.UserManagement
 {
-    public class UserManagementModelMapping:IUserManagementModelMapping
+    public class UserManagementModelMapping : IUserManagementModelMapping
     {
         public async Task<List<UserAccounts>> UserManagementMapping(List<object[]> array)
         {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
 
 namespace UniversityOfNottinghamAPI.Services.Common
 {

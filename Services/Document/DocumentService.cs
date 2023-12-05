@@ -1,7 +1,7 @@
-﻿using UniversityOfNottinghamAPI.ModelMapping.Document;
+﻿using UniversityOfNottinghamAPI.Constants;
+using UniversityOfNottinghamAPI.ModelMapping.Document;
 using UniversityOfNottinghamAPI.Models.ServiceModels;
 using UniversityOfNottinghamAPI.Services.Common;
-using UniversityOfNottinghamAPI.Constants;
 
 namespace UniversityOfNottinghamAPI.Services.Document
 {

@@ -2,7 +2,7 @@
 
 namespace UniversityOfNottinghamAPI.ModelMapping.StorageManagement
 {
-    public class StorageManagementModelMapping: IStorageManagementModelMapping
+    public class StorageManagementModelMapping : IStorageManagementModelMapping
     {
         public async Task<List<Storages>> StorageManagementMapping(List<object[]> array)
         {
