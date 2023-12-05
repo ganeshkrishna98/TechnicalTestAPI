@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping.DeviceManagement
+namespace TechnicalTestAPI.ModelMapping.DeviceManagement
 {
     public interface IDeviceManagementModelMapping
     {

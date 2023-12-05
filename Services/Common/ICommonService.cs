@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.Common
+namespace TechnicalTestAPI.Services.Common
 {
     public interface ICommonService
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.UserManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.UserManagement;
 
-namespace UniversityOfNottinghamAPI.Controllers.UserManagement
+namespace TechnicalTestAPI.Controllers.UserManagement
 {
     [Route("api/user-management")]
     [EnableCors]

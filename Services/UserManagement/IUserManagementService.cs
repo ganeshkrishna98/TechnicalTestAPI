@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.UserManagement
+namespace TechnicalTestAPI.Services.UserManagement
 {
     public interface IUserManagementService
     {

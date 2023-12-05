@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.NotificationManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.NotificationManagement;
 
-namespace UniversityOfNottinghamAPI.Controllers.NotificationManagement
+namespace TechnicalTestAPI.Controllers.NotificationManagement
 {
     [Route("api/notification-management")]
     [EnableCors]

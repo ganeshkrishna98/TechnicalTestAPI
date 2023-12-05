@@ -1,4 +1,4 @@
-﻿namespace UniversityOfNottinghamAPI.Models.DatabaseTableModels
+﻿namespace TechnicalTestAPI.Models.DatabaseTableModels
 {
     public class TableColumns
     {

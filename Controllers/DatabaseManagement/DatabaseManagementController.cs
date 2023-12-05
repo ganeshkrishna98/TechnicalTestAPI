@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace UniversityOfNottinghamAPI.Controllers.DatabaseManagement
+namespace TechnicalTestAPI.Controllers.DatabaseManagement
 {
     public class DatabaseManagementController : Controller
     {

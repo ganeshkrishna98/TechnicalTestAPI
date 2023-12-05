@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UniversityOfNottinghamAPI.Database;
+using TechnicalTestAPI.Database;
 
 #nullable disable
 
-namespace UniversityOfNottinghamAPI.Migrations
+namespace TechnicalTestAPI.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
     partial class DatabaseContextModelSnapshot : ModelSnapshot
@@ -21,7 +21,7 @@ namespace UniversityOfNottinghamAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("UniversityOfNottinghamAPI.Models.OutputModels.DocumentOutput", b =>
+            modelBuilder.Entity("TechnicalTestAPI.Models.OutputModels.DocumentOutput", b =>
                 {
                     b.Property<string>("Document_ID")
                         .HasColumnType("nvarchar(450)");
@@ -67,7 +67,7 @@ namespace UniversityOfNottinghamAPI.Migrations
                     b.ToTable("DocumentOutputs");
                 });
 
-            modelBuilder.Entity("UniversityOfNottinghamAPI.Models.OutputModels.UsersOutput", b =>
+            modelBuilder.Entity("TechnicalTestAPI.Models.OutputModels.UsersOutput", b =>
                 {
                     b.ToTable("Users");
                 });

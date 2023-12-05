@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.StorageManagement
+namespace TechnicalTestAPI.Services.StorageManagement
 {
     public interface IStorageManagementService
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.DeviceManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.DeviceManagement;
 
-namespace UniversityOfNottinghamAPI.Controllers.DeviceManagement
+namespace TechnicalTestAPI.Controllers.DeviceManagement
 {
     [Route("api/device-management")]
     [EnableCors]

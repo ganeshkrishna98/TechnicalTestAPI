@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.ModelMapping.NotificationManagement;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Common;
+﻿using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.ModelMapping.NotificationManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Common;
 
-namespace UniversityOfNottinghamAPI.Services.NotificationManagement
+namespace TechnicalTestAPI.Services.NotificationManagement
 {
     public class NotificationManagementService : INotificationManagementService
     {

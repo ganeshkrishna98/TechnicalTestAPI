@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.NotificationManagement
+namespace TechnicalTestAPI.Services.NotificationManagement
 {
     public interface INotificationManagementService
     {

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.StorageManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.StorageManagement;
 
-namespace UniversityOfNottinghamAPI.Controllers.StorageManagement
+namespace TechnicalTestAPI.Controllers.StorageManagement
 {
     [Route("api/storage-management")]
     [EnableCors]

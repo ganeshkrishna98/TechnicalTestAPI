@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UniversityOfNottinghamAPI.Models.ServerModels
+namespace TechnicalTestAPI.Models.ServerModels
 {
     public class DevicesModel
     {

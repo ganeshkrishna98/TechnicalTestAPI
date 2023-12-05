@@ -1,4 +1,4 @@
-﻿namespace UniversityOfNottinghamAPI.Constants
+﻿namespace TechnicalTestAPI.Constants
 {
     public class Constant
     {

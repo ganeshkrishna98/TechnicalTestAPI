@@ -1,6 +1,6 @@
-# UniversityOfNottinghamAPI
+# TechnicalTestAPI
 
-This is the README file for the UniversityOfNottinghamAPI project.
+This is the README file for the TechnicalTestAPI project.
 
 ## Table of Contents
 - [Overview](#overview)
@@ -16,7 +16,7 @@ This is the README file for the UniversityOfNottinghamAPI project.
 
 ## Overview
 
-UniversityOfNottinghamAPI is a .NET API project that provides [brief description of the purpose and key features].
+TechnicalTestAPI is a .NET API project that provides [brief description of the purpose and key features].
 
 ## Prerequisites
 
@@ -26,14 +26,14 @@ Before you begin, ensure you have the following prerequisites installed:
 
 ## Getting Started
 
-Follow these steps to get the UniversityOfNottinghamAPI project set up on your local machine:
+Follow these steps to get the TechnicalTestAPI project set up on your local machine:
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/UniversityOfNottinghamAPI.git
+git clone https://github.com/yourusername/TechnicalTestAPI.git
 
 # Navigate to the project directory
-cd UniversityOfNottinghamAPI
+cd TechnicalTestAPI
 
 # Install dependencies
 dotnet restore

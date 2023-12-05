@@ -1,4 +1,4 @@
-﻿namespace UniversityOfNottinghamAPI.Services.DatabaseManagement
+﻿namespace TechnicalTestAPI.Services.DatabaseManagement
 {
     public interface IDatabaseManagementService
     {

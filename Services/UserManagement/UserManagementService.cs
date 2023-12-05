@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.ModelMapping.UserManagement;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Common;
+﻿using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.ModelMapping.UserManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Common;
 
-namespace UniversityOfNottinghamAPI.Services.UserManagement
+namespace TechnicalTestAPI.Services.UserManagement
 {
     public class UserManagementService : IUserManagementService
     {

@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.Authentication
+namespace TechnicalTestAPI.Services.Authentication
 {
     public interface IAuthenticationService
     {

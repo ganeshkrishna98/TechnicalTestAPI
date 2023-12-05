@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Database;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Document;
+using TechnicalTestAPI.Database;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Document;
 
-namespace UniversityOfNottinghamAPI.Controllers.Document
+namespace TechnicalTestAPI.Controllers.Document
 {
     [Route("api/document")]
     [EnableCors]

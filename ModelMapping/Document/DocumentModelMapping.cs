@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping.Document
+namespace TechnicalTestAPI.ModelMapping.Document
 {
     public class DocumentModelMapping : IDocumentModelMapping
     {

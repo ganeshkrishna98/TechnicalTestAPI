@@ -2,11 +2,11 @@
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Text;
-using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.Models.DatabaseTableModels;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
+using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.Models.DatabaseTableModels;
+using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.Common
+namespace TechnicalTestAPI.Services.Common
 {
     public class CommonService : ICommonService
     {

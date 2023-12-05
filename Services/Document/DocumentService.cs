@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.ModelMapping.Document;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Common;
+﻿using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.ModelMapping.Document;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Common;
 
-namespace UniversityOfNottinghamAPI.Services.Document
+namespace TechnicalTestAPI.Services.Document
 {
     public class DocumentService : IDocumentService
     {

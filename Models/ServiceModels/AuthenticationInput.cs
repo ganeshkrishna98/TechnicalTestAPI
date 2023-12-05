@@ -1,4 +1,4 @@
-﻿namespace UniversityOfNottinghamAPI.Models.ServiceModels
+﻿namespace TechnicalTestAPI.Models.ServiceModels
 {
     public class AuthenticationLoginInput
     {

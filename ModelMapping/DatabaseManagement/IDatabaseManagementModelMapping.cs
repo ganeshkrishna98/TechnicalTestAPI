@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping.DatabaseManagement
+namespace TechnicalTestAPI.ModelMapping.DatabaseManagement
 {
     public interface IDatabaseManagementModelMapping
     {

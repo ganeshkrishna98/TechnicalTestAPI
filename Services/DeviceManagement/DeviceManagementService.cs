@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.ModelMapping.DeviceManagement;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Common;
+﻿using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.ModelMapping.DeviceManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Common;
 
-namespace UniversityOfNottinghamAPI.Services.DeviceManagement
+namespace TechnicalTestAPI.Services.DeviceManagement
 {
     public class DeviceManagementService : IDeviceManagementService
     {

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace UniversityOfNottinghamAPI.Migrations
+namespace TechnicalTestAPI.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

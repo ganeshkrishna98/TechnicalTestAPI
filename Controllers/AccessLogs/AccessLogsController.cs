@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.AccessLogs;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.AccessLogs;
 
-namespace UniversityOfNottinghamAPI.Controllers.AccessLogs
+namespace TechnicalTestAPI.Controllers.AccessLogs
 {
     [Route("api/access-logs")]
     [EnableCors]

@@ -1,6 +1,6 @@
-﻿using UniversityOfNottinghamAPI.Models.ServiceModels;
+﻿using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.ModelMapping.AccessLogs
+namespace TechnicalTestAPI.ModelMapping.AccessLogs
 {
     public class AccessLogsModelMapping : IAccessLogsModelMapping
     {

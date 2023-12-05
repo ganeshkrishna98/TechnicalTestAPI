@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
-using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.Database;
-using UniversityOfNottinghamAPI.Models.ServerModels;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
+using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.Database;
+using TechnicalTestAPI.Models.ServerModels;
+using TechnicalTestAPI.Models.ServiceModels;
 
-namespace UniversityOfNottinghamAPI.Services.Authentication
+namespace TechnicalTestAPI.Services.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {

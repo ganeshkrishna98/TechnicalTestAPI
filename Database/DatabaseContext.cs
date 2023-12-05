@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UniversityOfNottinghamAPI.Models.ServerModels;
+using TechnicalTestAPI.Models.ServerModels;
 
-namespace UniversityOfNottinghamAPI.Database
+namespace TechnicalTestAPI.Database
 {
     public class DatabaseContext : DbContext
     {

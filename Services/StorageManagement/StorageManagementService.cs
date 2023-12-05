@@ -1,9 +1,9 @@
-﻿using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.ModelMapping.StorageManagement;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Common;
+﻿using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.ModelMapping.StorageManagement;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Common;
 
-namespace UniversityOfNottinghamAPI.Services.StorageManagement
+namespace TechnicalTestAPI.Services.StorageManagement
 {
     public class StorageManagementService : IStorageManagementService
     {

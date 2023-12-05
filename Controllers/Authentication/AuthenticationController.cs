@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using UniversityOfNottinghamAPI.Constants;
-using UniversityOfNottinghamAPI.Models.ServiceModels;
-using UniversityOfNottinghamAPI.Services.Authentication;
+using TechnicalTestAPI.Constants;
+using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.Authentication;
 
-namespace UniversityOfNottinghamAPI.Controllers.Authentication
+namespace TechnicalTestAPI.Controllers.Authentication
 {
     [Route("api/authentication")]
     [EnableCors]
