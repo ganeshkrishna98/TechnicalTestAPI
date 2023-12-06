@@ -1,4 +1,5 @@
-﻿using TechnicalTestAPI.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.ModelMapping.DeviceManagement;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
@@ -40,7 +41,17 @@ namespace TechnicalTestAPI.Services.DeviceManagement
 
         public async Task<dynamic> DeleteDevices(Devices deviceManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Delete, deviceManagementInput);
+            var result = await _commonService.ExecuteRequest(typeof(DeviceManagementService).Name.ToString(), Constant.Delete, deviceManagementInput);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
     }
 }

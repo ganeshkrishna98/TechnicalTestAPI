@@ -1,5 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
+using System.Text;
 using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.Database;
 using TechnicalTestAPI.Models.ServerModels;
@@ -10,7 +14,7 @@ namespace TechnicalTestAPI.Services.Authentication
     public class AuthenticationService : IAuthenticationService
     {
         private readonly DatabaseContext _dbContext;
-
+        private readonly string _jwtSecret = "YourSecretKey";
         public AuthenticationService(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
@@ -24,11 +28,13 @@ namespace TechnicalTestAPI.Services.Authentication
                     .SingleOrDefaultAsync(u => u.userEmail.ToLower() == email.ToLower());
                 if (user != null && VerifyPassword(password, user.passwordHash, user.passwordSalt))
                 {
+                    var token = GenerateJwtToken(email);
                     AuthenticationOutput authenticationOutput = new()
                     {
                         loginStatus = Constant.Success,
                         userEmail = email,
-                        userId = await GetUserId(email)
+                        userId = await GetUserId(email),
+                        Token = token
                     };
                     return authenticationOutput;
                 }
@@ -133,6 +139,24 @@ namespace TechnicalTestAPI.Services.Authentication
             }
         }
 
+        private string GenerateJwtToken(string userEmail)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_jwtSecret);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.Name, userEmail),
+                }),
+                Expires = DateTime.UtcNow.AddHours(1), // Adjust the expiration time as needed
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
 
         public async Task<string> GetUserId(string email)
         {

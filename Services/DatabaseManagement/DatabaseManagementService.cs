@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
 
 namespace TechnicalTestAPI.Services.DatabaseManagement
@@ -13,7 +14,17 @@ namespace TechnicalTestAPI.Services.DatabaseManagement
         }
         public async Task<IActionResult> DeleteAllValues(string tableName)
         {
-            return await _commonService.DeleteAllValues(tableName);
+            var result = await _commonService.DeleteAllValues(tableName);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
     }
 }

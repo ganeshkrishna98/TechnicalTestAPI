@@ -1,4 +1,5 @@
-﻿using TechnicalTestAPI.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.ModelMapping.AccessLogs;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
@@ -39,7 +40,17 @@ namespace TechnicalTestAPI.Services.AccessLogs
 
         public async Task<dynamic> DeleteAccessLogs(AccessLog accessLogsInput)
         {
-            return await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Delete, accessLogsInput);
+            var result = await _commonService.ExecuteRequest(typeof(AccessLogsService).Name.ToString(), Constant.Delete, accessLogsInput);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
     }
 }

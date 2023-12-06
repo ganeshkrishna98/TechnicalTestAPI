@@ -1,4 +1,5 @@
-﻿using TechnicalTestAPI.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.ModelMapping.NotificationManagement;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
@@ -40,7 +41,17 @@ namespace TechnicalTestAPI.Services.NotificationManagement
 
         public async Task<dynamic> DeleteNotifications(Notifications notificationsInput)
         {
-            return await _commonService.ExecuteRequest(typeof(NotificationManagementService).Name.ToString(), Constant.Delete, notificationsInput);
+            var result = await _commonService.ExecuteRequest(typeof(NotificationManagementService).Name.ToString(), Constant.Delete, notificationsInput);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
     }
 }

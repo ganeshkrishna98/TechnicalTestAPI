@@ -1,4 +1,5 @@
-﻿using TechnicalTestAPI.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.ModelMapping.StorageManagement;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
@@ -40,7 +41,17 @@ namespace TechnicalTestAPI.Services.StorageManagement
 
         public async Task<dynamic> DeleteStorages(Storages storageManagementInput)
         {
-            return await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Delete, storageManagementInput);
+            var result = await _commonService.ExecuteRequest(typeof(StorageManagementService).Name.ToString(), Constant.Delete, storageManagementInput);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
     }
 }

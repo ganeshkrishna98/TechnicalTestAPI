@@ -1,4 +1,5 @@
-﻿using TechnicalTestAPI.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
+using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.ModelMapping.Document;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Common;
@@ -40,7 +41,17 @@ namespace TechnicalTestAPI.Services.Document
 
         public async Task<dynamic> DeleteDocuments(Documents documentInput)
         {
-            return await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
+            var result = await _commonService.ExecuteRequest(typeof(DocumentService).Name.ToString(), Constant.Delete, documentInput);
+            if (result is ErrorModel)
+            {
+                return result;
+            }
+
+            var jsonResult = result as string;
+            return new JsonResult(jsonResult)
+            {
+                StatusCode = 200,
+            };
         }
 
         public async Task<dynamic> UploadDocuments(FileModel inputfile)
