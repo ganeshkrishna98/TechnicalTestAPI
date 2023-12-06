@@ -14,10 +14,11 @@ namespace TechnicalTestAPI.Services.Authentication
     public class AuthenticationService : IAuthenticationService
     {
         private readonly DatabaseContext _dbContext;
-        private readonly string _jwtSecret = "YourSecretKey";
+        private readonly string _jwtSecret;
         public AuthenticationService(DatabaseContext dbContext)
         {
             _dbContext = dbContext;
+            _jwtSecret = GenerateSecureSecret();
         }
 
         public async Task<AuthenticationOutput> AuthenticateUser(string email, string password)
@@ -150,7 +151,7 @@ namespace TechnicalTestAPI.Services.Authentication
                 {
                     new Claim(ClaimTypes.Name, userEmail),
                 }),
-                Expires = DateTime.UtcNow.AddHours(1), // Adjust the expiration time as needed
+                Expires = DateTime.UtcNow.AddHours(1), 
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
@@ -162,6 +163,19 @@ namespace TechnicalTestAPI.Services.Authentication
         {
             var userAcc = await _dbContext.UserAuthentication.FirstOrDefaultAsync(x => x.userEmail == email);
             return userAcc?.userId;
+        }
+
+        private string GenerateSecureSecret()
+        {
+            const int keyLength = 32;
+
+            using (var randomNumberGenerator = new RNGCryptoServiceProvider())
+            {
+                byte[] randomNumber = new byte[keyLength];
+                randomNumberGenerator.GetBytes(randomNumber);
+
+                return BitConverter.ToString(randomNumber).Replace("-", "").ToLower();
+            }
         }
     }
 }
