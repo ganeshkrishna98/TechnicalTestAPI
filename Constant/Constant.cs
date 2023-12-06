@@ -5,6 +5,7 @@
         #region Status Response Constants
         public const string Success = "Success";
         public const string Failed = "Failed";
+        public const string SQLWriteFailed = "SQL Write Failed";
         public const string FileNotSelected = "File is not selected";
         public const string FileIsEmpty = "File is empty";
         public const string FileNotFound = "File not found";

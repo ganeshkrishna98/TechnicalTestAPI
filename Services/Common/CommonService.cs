@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 using System.Data;
 using System.Text;
@@ -55,7 +57,7 @@ namespace TechnicalTestAPI.Services.Common
                 if (response == 1)
                     return Constant.Success;
                 else
-                    return await ErrorResponseBuilder(Constant.Failed);
+                    return await ErrorResponseBuilder(Constant.SQLWriteFailed);
             }
 
             #endregion SQL Execution Part
@@ -196,5 +198,18 @@ namespace TechnicalTestAPI.Services.Common
             return error;
         }
         #endregion Error Response Builder
+
+        public async Task<dynamic> DeleteAllValues(string tableName)
+        {
+            SqlConnection sqlConnection = new SqlConnection(_configuration.GetConnectionString("SQL"));
+            await sqlConnection.OpenAsync();
+            string queryString = $"DELETE FROM {tableName};";
+            SqlCommand sqlCommand = new SqlCommand(queryString, sqlConnection);
+            var response = await sqlCommand.ExecuteNonQueryAsync();
+            if (response == 1)
+                return Constant.Success;
+            else
+                return await ErrorResponseBuilder(Constant.SQLWriteFailed);
+        }
     }
 }

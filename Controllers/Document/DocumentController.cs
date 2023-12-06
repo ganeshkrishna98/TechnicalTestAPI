@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
-using TechnicalTestAPI.Database;
 using TechnicalTestAPI.Models.ServiceModels;
 using TechnicalTestAPI.Services.Document;
 
@@ -12,7 +11,7 @@ namespace TechnicalTestAPI.Controllers.Document
     {
         private readonly IDocumentService _documentService;
 
-        public DocumentController(DatabaseContext context, IDocumentService documentService)
+        public DocumentController(IDocumentService documentService)
         {
             _documentService = documentService;
         }
