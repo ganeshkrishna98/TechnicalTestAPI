@@ -81,24 +81,28 @@ namespace TechnicalTestAPI.Services.Authentication
             }
         }
 
-        public async Task<bool> CreateUser(string email, string password)
+        public async Task<bool> CreateUser(NewUserInput model)
         {
             try
             {
-                if (_dbContext.UserAuthentication.Any(u => u.userEmail == email))
+                if (_dbContext.UserAuthentication.Any(u => u.userEmail == model.email))
                 {
                     return false;
                 }
-                var (hash, salt) = GeneratePasswordHash(password);
+                var (hash, salt) = GeneratePasswordHash(model.password);
                 var newUser = new UserAuthenticationModel
                 {
                     userId = Guid.NewGuid().ToString(),
-                    userEmail = email,
+                    userEmail = model.email,
                     passwordHash = hash,
                     passwordSalt = salt
                 };
                 _dbContext.UserAuthentication.Add(newUser);
                 await _dbContext.SaveChangesAsync();
+                model.userAccounts.userId = newUser.userId;
+                model.userAccounts.userEmail = model.email;
+                model.userAccounts.accountType = "Standard";
+                await _userManagementService.CreateUsers(model.userAccounts);
                 return true;
             }
             catch (Exception ex)

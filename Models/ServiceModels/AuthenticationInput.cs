@@ -8,9 +8,8 @@
 
     public class NewUserInput
     {
-        public string userId { get; set; }
-        public string userEmail { get; set; }
-        public string passwordHash { get; set; }
-        public string passwordSalt { get; set; }
+        public string email { get; set; }
+        public string password { get; set; }
+        public UserAccounts userAccounts { get; set; }
     }
 }

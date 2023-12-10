@@ -34,11 +34,9 @@ namespace TechnicalTestAPI.Controllers.Authentication
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AuthenticationLoginInput model)
+        public async Task<IActionResult> Register([FromBody] NewUserInput model)
         {
-            var userEmail = model.userEmail;
-            var password = model.password;
-            if (await _authService.CreateUser(userEmail, password))
+            if (await _authService.CreateUser(model))
             {
                 return Ok(Constant.SuccessfulUserCreation);
             }
