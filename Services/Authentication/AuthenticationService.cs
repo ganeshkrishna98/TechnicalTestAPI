@@ -8,6 +8,7 @@ using TechnicalTestAPI.Constants;
 using TechnicalTestAPI.Database;
 using TechnicalTestAPI.Models.ServerModels;
 using TechnicalTestAPI.Models.ServiceModels;
+using TechnicalTestAPI.Services.UserManagement;
 
 namespace TechnicalTestAPI.Services.Authentication
 {
@@ -15,10 +16,12 @@ namespace TechnicalTestAPI.Services.Authentication
     {
         private readonly DatabaseContext _dbContext;
         private readonly string _jwtSecret;
-        public AuthenticationService(DatabaseContext dbContext)
+        private readonly IUserManagementService _userManagementService;
+        public AuthenticationService(DatabaseContext dbContext, IUserManagementService userManagementService)
         {
             _dbContext = dbContext;
             _jwtSecret = GenerateSecureSecret();
+            _userManagementService = userManagementService;
         }
 
         public async Task<AuthenticationOutput> AuthenticateUser(string email, string password)
@@ -30,12 +33,16 @@ namespace TechnicalTestAPI.Services.Authentication
                 if (user != null && VerifyPassword(password, user.passwordHash, user.passwordSalt))
                 {
                     var token = GenerateJwtToken(email);
+                    List<UserAccounts> readUsers = await _userManagementService.ReadUsers();
+                    string usersId = await GetUserId(email);
                     AuthenticationOutput authenticationOutput = new()
                     {
                         loginStatus = Constant.Success,
                         userEmail = email,
-                        userId = await GetUserId(email),
-                        Token = token
+                        userId = usersId,
+                        Token = token,
+                        accountType = readUsers.Where(x => x.userId == usersId).FirstOrDefault().accountType
+
                     };
                     return authenticationOutput;
                 }
